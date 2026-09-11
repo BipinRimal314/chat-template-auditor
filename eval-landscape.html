@@ -1,0 +1,749 @@
+<title>How Models Get Measured</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+  :root {
+    --ground:   #EDEFEC;
+    --surface:  #F8F9F7;
+    --raised:   #FFFFFF;
+    --ink:      #17201E;
+    --muted:    #5C6764;
+    --faint:    #7E8985;
+    --rule:     #CBD2CE;
+    --rule-soft:#DDE2DF;
+    --accent:   #0E6E70;
+    --accent-w: #0E6E7014;
+    --flag:     #B23A2F;
+    --flag-w:   #B23A2F14;
+    --ok:       #2F6B4F;
+    --ok-w:     #2F6B4F14;
+
+    --f-display: "Bitter", Georgia, "Times New Roman", serif;
+    --f-body:    "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --f-mono:    "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:   #121817;
+      --surface:  #1A2220;
+      --raised:   #212B29;
+      --ink:      #E6EBE8;
+      --muted:    #9AA6A2;
+      --faint:    #7C8985;
+      --rule:     #2E3936;
+      --rule-soft:#252F2D;
+      --accent:   #55B7B5;
+      --accent-w: #55B7B51F;
+      --flag:     #E5806E;
+      --flag-w:   #E5806E1F;
+      --ok:       #6FBF95;
+      --ok-w:     #6FBF951F;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground:   #121817;
+    --surface:  #1A2220;
+    --raised:   #212B29;
+    --ink:      #E6EBE8;
+    --muted:    #9AA6A2;
+    --faint:    #7C8985;
+    --rule:     #2E3936;
+    --rule-soft:#252F2D;
+    --accent:   #55B7B5;
+    --accent-w: #55B7B51F;
+    --flag:     #E5806E;
+    --flag-w:   #E5806E1F;
+    --ok:       #6FBF95;
+    --ok-w:     #6FBF951F;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 17px;
+    line-height: 1.62;
+    margin: 0;
+    padding-inline: 20px;
+    padding-block: 0 72px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 940px; margin: 0 auto; }
+
+  /* ---------- masthead ---------- */
+
+  .masthead {
+    padding-block: 56px 34px;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .eyebrow {
+    font-family: var(--f-mono);
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 18px;
+  }
+
+  h1 {
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: clamp(2.1rem, 6vw, 3.1rem);
+    line-height: 1.06;
+    letter-spacing: -0.018em;
+    text-wrap: balance;
+    margin: 0 0 20px;
+  }
+
+  .standfirst {
+    font-size: 1.16rem;
+    line-height: 1.55;
+    color: var(--muted);
+    max-width: 60ch;
+    margin: 0;
+  }
+
+  .standfirst strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- sections ---------- */
+
+  section { padding-block: 46px 0; }
+
+  h2 {
+    font-family: var(--f-display);
+    font-weight: 600;
+    font-size: 1.62rem;
+    line-height: 1.2;
+    letter-spacing: -0.012em;
+    text-wrap: balance;
+    margin: 0 0 6px;
+  }
+
+  .sec-note {
+    color: var(--faint);
+    font-size: 0.94rem;
+    margin: 0 0 26px;
+    max-width: 68ch;
+  }
+
+  h3 {
+    font-family: var(--f-display);
+    font-weight: 600;
+    font-size: 1.06rem;
+    margin: 0 0 6px;
+  }
+
+  p { margin: 0 0 14px; max-width: 68ch; }
+  p:last-child { margin-bottom: 0; }
+
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible, .lever:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  code {
+    font-family: var(--f-mono);
+    font-size: 0.86em;
+    background: var(--accent-w);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+
+  /* ---------- org table ---------- */
+
+  .scroller { overflow-x: auto; margin-bottom: 8px; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    min-width: 620px;
+  }
+
+  thead th {
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--faint);
+    text-align: left;
+    padding: 0 16px 9px 0;
+    border-bottom: 1px solid var(--ink);
+    vertical-align: bottom;
+  }
+
+  tbody td {
+    padding: 14px 16px 14px 0;
+    border-bottom: 1px solid var(--rule-soft);
+    vertical-align: top;
+  }
+
+  tbody tr:last-child td { border-bottom: none; }
+
+  td.org {
+    font-family: var(--f-display);
+    font-weight: 600;
+    white-space: nowrap;
+    padding-right: 22px;
+  }
+
+  td.org small {
+    display: block;
+    font-family: var(--f-body);
+    font-weight: 400;
+    font-size: 0.8rem;
+    color: var(--faint);
+    white-space: normal;
+    letter-spacing: 0;
+  }
+
+  td.method { color: var(--muted); }
+
+  .num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; font-size: 0.9em; }
+
+  /* ---------- levers ---------- */
+
+  .levers { display: grid; gap: 0; }
+
+  .lever {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px 20px;
+    align-items: start;
+    padding-block: 18px;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+
+  .lever:first-child { border-top: 1px solid var(--rule); }
+  .lever p { font-size: 0.95rem; color: var(--muted); margin: 0; grid-column: 1 / -1; }
+
+  .chip {
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    border-radius: 3px;
+    white-space: nowrap;
+    align-self: start;
+  }
+
+  .chip.fail { background: var(--flag-w); color: var(--flag); border: 1px solid var(--flag); }
+  .chip.pass { background: var(--ok-w);   color: var(--ok);   border: 1px solid var(--ok); }
+  .chip.na   { background: transparent;   color: var(--faint);border: 1px solid var(--rule); }
+
+  /* ---------- two-column compare ---------- */
+
+  .compare {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 26px;
+    margin-top: 4px;
+  }
+
+  .col h3 {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .col.did h3   { color: var(--ok); border-color: var(--ok); }
+  .col.didnt h3 { color: var(--flag); border-color: var(--flag); }
+
+  .col ul { margin: 0; padding-left: 18px; }
+  .col li { margin-bottom: 9px; font-size: 0.95rem; color: var(--muted); }
+  .col li strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- ladder ---------- */
+
+  .ladder { counter-reset: rung; margin-top: 6px; }
+
+  .rung {
+    display: grid;
+    grid-template-columns: 42px 1fr;
+    gap: 0 18px;
+    padding-block: 18px;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+
+  .rung:first-child { border-top: 1px solid var(--rule); }
+
+  .rung::before {
+    counter-increment: rung;
+    content: counter(rung, decimal-leading-zero);
+    font-family: var(--f-mono);
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--accent);
+    padding-top: 2px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .rung .moves {
+    grid-column: 2;
+    font-size: 0.9rem;
+    color: var(--faint);
+    margin-top: 5px;
+  }
+
+  .rung .moves b {
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-right: 7px;
+  }
+
+  .rung p { font-size: 0.95rem; color: var(--muted); margin: 0; grid-column: 2; }
+
+  /* ---------- callout ---------- */
+
+  .callout {
+    background: var(--surface);
+    border-left: 3px solid var(--accent);
+    padding: 22px 24px;
+    margin-block: 26px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .callout h3 { margin-bottom: 8px; }
+  .callout p { font-size: 0.96rem; color: var(--muted); }
+
+  pre {
+    font-family: var(--f-mono);
+    font-size: 0.82rem;
+    line-height: 1.6;
+    background: var(--raised);
+    border: 1px solid var(--rule-soft);
+    border-radius: 4px;
+    padding: 14px 16px;
+    overflow-x: auto;
+    margin: 0 0 14px;
+  }
+
+  /* ---------- claims ---------- */
+
+  .claims { border-top: 1px solid var(--rule); margin-top: 6px; }
+
+  .claim {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    gap: 4px 18px;
+    padding-block: 16px;
+    border-bottom: 1px solid var(--rule-soft);
+    font-size: 0.95rem;
+  }
+
+  .claim dt {
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding-top: 4px;
+  }
+
+  .claim.say dt    { color: var(--ok); }
+  .claim.dontsay dt { color: var(--flag); }
+  .claim dd { margin: 0; color: var(--muted); }
+  .claim dd em { color: var(--ink); font-style: normal; font-weight: 600; }
+
+  footer {
+    margin-top: 52px;
+    padding-top: 22px;
+    border-top: 1px solid var(--rule);
+    font-size: 0.87rem;
+    color: var(--faint);
+  }
+
+  footer p { max-width: 72ch; }
+
+  @media (max-width: 560px) {
+    body { font-size: 16px; }
+    .rung { grid-template-columns: 30px 1fr; gap: 0 12px; }
+    .claim { grid-template-columns: 1fr; }
+    .lever { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow">Reference · Evaluation practice</p>
+    <h1>How Models Get Measured</h1>
+    <p class="standfirst">
+      A model card is a vendor's own scorecard. The organisations below exist because
+      that is not enough. This is who they are, what separates their numbers from a
+      self-reported table, and how the <strong>MiniCPM5-2B</strong> reproduction we are
+      running maps onto that standard.
+    </p>
+  </header>
+
+  <section>
+    <h2>Who measures what</h2>
+    <p class="sec-note">
+      Four distinct jobs, often confused. Capability ranking, buyer-facing comparison,
+      autonomy measurement, and safety assurance are different questions and use
+      different instruments.
+    </p>
+
+    <div class="scroller">
+      <table>
+        <thead>
+          <tr>
+            <th>Organisation</th>
+            <th>What it publishes</th>
+            <th>The method that matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="org">Epoch AI<small>Independent research</small></td>
+            <td>
+              Benchmarking Hub across roughly <span class="num">80</span> benchmarks, the
+              Epoch Capabilities Index, and FrontierMath including an open-problems tier.
+            </td>
+            <td class="method">
+              Runs a subset in-house on a fixed harness rather than trusting reported
+              numbers. The Index infers each benchmark's difficulty statistically from
+              models evaluated on overlapping sets, so a saturated benchmark still
+              contributes. Anchored so Claude 3.5 Sonnet sits at <span class="num">130</span>
+              and GPT-5 at <span class="num">150</span>.
+            </td>
+          </tr>
+          <tr>
+            <td class="org">Artificial Analysis<small>Commercial analyst</small></td>
+            <td>
+              Intelligence Index, currently <span class="num">10</span> evaluations,
+              published alongside price, latency and throughput for each serving endpoint.
+            </td>
+            <td class="method">
+              Scores pass@1 aggregated over repeats, weighted by category rather than
+              averaged flat: agents <span class="num">30%</span>, general
+              <span class="num">30%</span>, coding <span class="num">20%</span>, scientific
+              reasoning <span class="num">20%</span>. Publishes a confidence interval,
+              stated as under <span class="num">±1%</span> at 95%.
+            </td>
+          </tr>
+          <tr>
+            <td class="org">METR<small>Autonomy research</small></td>
+            <td>
+              Task-completion time horizon, reported in hours of human-expert task time
+              rather than as a percentage.
+            </td>
+            <td class="method">
+              Measures the task length at which a model succeeds half the time, drawn from
+              RE-Bench, HCAST and shorter software tasks. Converts capability into a unit
+              a non-specialist can reason about, and has tracked a doubling roughly every
+              four months.
+            </td>
+          </tr>
+          <tr>
+            <td class="org">UK AI Security Institute<small>Government</small></td>
+            <td>
+              Inspect, the open-source framework a large part of the field now writes
+              evaluations in.
+            </td>
+            <td class="method">
+              Three abstractions carry everything: a dataset of samples, a solver that
+              produces an answer, a scorer that grades it. Learning this structure is the
+              single most transferable eval skill, because other groups ship their suites
+              against it.
+            </td>
+          </tr>
+          <tr>
+            <td class="org">Apollo Research<small>Safety</small></td>
+            <td>
+              Pre-deployment evaluations for strategic deception, evaluation awareness and
+              misaligned goal pursuit.
+            </td>
+            <td class="method">
+              Tests whether a model behaves differently when it detects it is being tested,
+              which is the failure mode that invalidates every other number on this page.
+              Runs on Inspect.
+            </td>
+          </tr>
+          <tr>
+            <td class="org">Benchmark authors<small>Academic and lab</small></td>
+            <td>
+              SWE-bench, <span class="num">τ²</span>-bench, BFCL, LiveCodeBench, ARC-AGI,
+              Terminal-Bench, MathArena and the rest of the rows on any model card.
+            </td>
+            <td class="method">
+              Each owns its own harness, scoring rules and contamination policy. Two
+              parties reporting the same benchmark name have not necessarily run the same
+              evaluation.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>What separates a number from a claim</h2>
+    <p class="sec-note">
+      Six levers. Each one is a question to ask of any table you are handed, scored here
+      against the MiniCPM5-2B card as an example you can walk through from memory.
+    </p>
+
+    <div class="levers">
+      <div class="lever">
+        <h3>One harness for every model in the table</h3>
+        <span class="chip fail">Card fails</span>
+        <p>
+          The two chat templates disagree on the default. MiniCPM5 leaves the reasoning
+          block open for the model to fill; Qwen3.5 inserts a pre-closed empty one, which
+          suppresses reasoning. Calling <code>apply_chat_template()</code> without an
+          explicit flag runs the subject with reasoning and the baseline without it.
+        </p>
+      </div>
+      <div class="lever">
+        <h3>Repeats, and a stated interval</h3>
+        <span class="chip fail">Card fails</span>
+        <p>
+          Every cell is a bare point estimate. Artificial Analysis publishes an interval
+          and says how many repeats produced it. On a 30-problem exam, the difference
+          between two models can sit entirely inside the noise.
+        </p>
+      </div>
+      <div class="lever">
+        <h3>Contamination control</h3>
+        <span class="chip fail">Card fails</span>
+        <p>
+          Every model in the table scores higher on AIME 2026 than on AIME 2025. Newer
+          exams should be harder to have memorised, not easier, so the ordering runs
+          backwards from what a clean pipeline would produce.
+        </p>
+      </div>
+      <div class="lever">
+        <h3>Saturation handling</h3>
+        <span class="chip fail">Card fails</span>
+        <p>
+          MATH-500 runs from <span class="num">85.4</span> to <span class="num">99.0</span>
+          across the table. A benchmark compressed into its top decile separates nothing,
+          and averaging it in dilutes the rows that still discriminate.
+        </p>
+      </div>
+      <div class="lever">
+        <h3>An aggregate that reflects difficulty</h3>
+        <span class="chip fail">Card fails</span>
+        <p>
+          The headline <span class="num">53.9</span> is an unweighted mean over
+          <span class="num">33</span> heterogeneous rows, which silently weights whichever
+          category contributed the most rows. Artificial Analysis weights by category;
+          Epoch fits difficulty from overlapping results instead of assuming it.
+        </p>
+      </div>
+      <div class="lever">
+        <h3>Third-party numbers, marked as such</h3>
+        <span class="chip pass">Card passes</span>
+        <p>
+          Daggered cells are attributed to Artificial Analysis rather than self-run. Mixing
+          in independent numbers and labelling which ones they are is the one place this
+          card behaves better than most.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>This reproduction against that standard</h2>
+    <p class="sec-note">
+      Being explicit about what a small independent eval does and does not establish is
+      itself the professional skill. Overstating coverage is how eval work loses its value.
+    </p>
+
+    <div class="compare">
+      <div class="col did">
+        <h3>What it establishes</h3>
+        <ul>
+          <li><strong>One harness, both models.</strong> Same precision, sampler, prompt and reasoning flag, so a gap means something.</li>
+          <li><strong>An ablation on the suspected confound.</strong> The baseline runs twice, reasoning on and off. If the off run lands near the card's number, the baseline column is explained.</li>
+          <li><strong>Uncontaminated long-context data.</strong> The haystack is generated at run time, so no model can have seen it, and the needles need a world-knowledge hop rather than keyword matching.</li>
+          <li><strong>Tests validated in both directions.</strong> Every buggy version was confirmed to fail and every reference fix to pass, so a score of zero means the model failed rather than the harness.</li>
+          <li><strong>Per-sample records.</strong> Every generation is kept with its token count and truncation flag, so any headline number can be taken apart afterwards.</li>
+        </ul>
+      </div>
+      <div class="col didnt">
+        <h3>What it does not</h3>
+        <ul>
+          <li><strong>Narrow intervals.</strong> Thirty problems at four samples leaves several points of noise. Enough to separate 30 from 80, not 84 from 88.</li>
+          <li><strong>The actual SWE-bench claim.</strong> That needs per-repository containers. The bug-repair set is a proxy and has to be described as one.</li>
+          <li><strong>Cost or latency.</strong> One machine, one backend, no serving comparison. Analysts treat this as half the question.</li>
+          <li><strong>Agentic or tool-use rows.</strong> Untested here, and those are where the card's most unusual numbers sit.</li>
+          <li><strong>Anything about safety.</strong> No deception, refusal or evaluation-awareness testing whatsoever.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <h3>The finding that arrived before any generation</h3>
+      <p>
+        Reading two Jinja templates was worth more than the first hour of GPU time. This
+        is the habit to carry into a role: before running anything, diff the conditions
+        the numbers were produced under.
+      </p>
+      <pre>MiniCPM5-2B    {%- if enable_thinking is defined %}      &lt;- unset: model may reason
+Qwen3.5-2B     {%- if enable_thinking ... is true %}
+               {%- else %}{{- '&lt;think&gt;\n\n&lt;/think&gt;' }}  &lt;- unset: reasoning suppressed</pre>
+    </div>
+  </section>
+
+  <section>
+    <h2>Enhancing a small model for one use case</h2>
+    <p class="sec-note">
+      This is a genuine sequence, and the order is the point. Each rung costs more than the
+      one above it, so you climb only until the measured gain stops paying. The first rung
+      is not optional.
+    </p>
+
+    <div class="ladder">
+      <div class="rung">
+        <h3>Build the held-out set before touching the model</h3>
+        <p>
+          Fifty to two hundred real examples from the actual use case, with a scorer you
+          trust and have checked by hand. Split it and never look at the test half.
+          Everything below is measured against this and nothing else.
+        </p>
+        <p class="moves"><b>Moves</b> Nothing yet. Without it, no rung below can be shown to have worked.</p>
+      </div>
+      <div class="rung">
+        <h3>Prompt and output contract</h3>
+        <p>
+          Constrain the shape of the answer, not just the task. For a 2B model, forcing
+          structured output often recovers more than any weight change, because most
+          failures are formatting and drift rather than reasoning.
+        </p>
+        <p class="moves"><b>Moves</b> Format adherence and parse rate. Usually the largest single jump per hour spent.</p>
+      </div>
+      <div class="rung">
+        <h3>Retrieval</h3>
+        <p>
+          Score the retriever separately from the generator. A drop in end-to-end accuracy
+          that is really a recall problem will otherwise be misread as a model problem, and
+          fine-tuning will not fix it.
+        </p>
+        <p class="moves"><b>Moves</b> Knowledge coverage and factuality. Not reasoning.</p>
+      </div>
+      <div class="rung">
+        <h3>Tool and scaffold design</h3>
+        <p>
+          Narrow the action space until the model can hit it reliably. Most agentic gains
+          at this size come from removing choices rather than from a better model, which
+          is why tool-use scores move so far on identical weights.
+        </p>
+        <p class="moves"><b>Moves</b> Task completion, tool-call validity, error recovery.</p>
+      </div>
+      <div class="rung">
+        <h3>Supervised fine-tuning, usually LoRA</h3>
+        <p>
+          Now you need a training split that is genuinely disjoint from the eval set, and a
+          contamination check to prove it. This is the rung where teams most often fool
+          themselves and report a gain they built into the test.
+        </p>
+        <p class="moves"><b>Moves</b> Domain style, format, narrow-task accuracy. Rarely general capability.</p>
+      </div>
+      <div class="rung">
+        <h3>Distillation from a larger teacher</h3>
+        <p>
+          Generate traces with a stronger model, train the small one on them. This is what
+          MiniCPM5 says it did, and it is also why its benchmark profile looks unlike a
+          normal 2B model. Powerful, and it optimises directly toward whatever the teacher
+          was good at.
+        </p>
+        <p class="moves"><b>Moves</b> Whatever the teacher was strong at, including benchmark-shaped behaviour.</p>
+      </div>
+      <div class="rung">
+        <h3>Quantise and serve, then re-run everything</h3>
+        <p>
+          Run the same held-out set after quantising. This is where silent regressions live,
+          and skipping it is the most common way a validated model gets worse in production
+          without anyone noticing.
+        </p>
+        <p class="moves"><b>Moves</b> Latency, memory and cost. Sometimes accuracy, downward, quietly.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>What this supports you saying</h2>
+    <p class="sec-note">
+      The strongest version of this work is the accurate one. The finding is genuinely
+      interesting, and inflating the surrounding claims is what would make an interviewer
+      stop trusting the rest.
+    </p>
+
+    <dl class="claims">
+      <div class="claim say">
+        <dt>Supported</dt>
+        <dd>
+          <em>Designed and directed an independent reproduction of a published model card,
+          and found a harness-level confound in its baseline comparison.</em> This is the
+          real result and it stands on the template diff alone.
+        </dd>
+      </div>
+      <div class="claim say">
+        <dt>Supported</dt>
+        <dd>
+          <em>Built a resumable multi-model eval harness with contamination-controlled
+          long-context tests and validated hidden-test code tasks.</em> Describe the
+          validation step, since that is what separates it from a script.
+        </dd>
+      </div>
+      <div class="claim say">
+        <dt>Supported</dt>
+        <dd>
+          <em>Can explain why an unweighted mean over thirty-three benchmarks is not a
+          capability score,</em> and what Epoch and Artificial Analysis do instead. This is
+          a short, specific answer to a question that gets asked.
+        </dd>
+      </div>
+      <div class="claim dontsay">
+        <dt>Not yet</dt>
+        <dd>
+          Any claim about SWE-bench, agentic performance, or tool use. None of it is tested
+          here, and the proxy set has to be named as a proxy every time it comes up.
+        </dd>
+      </div>
+      <div class="claim dontsay">
+        <dt>Not yet</dt>
+        <dd>
+          That the card's numbers are fabricated. The evidence supports a harness confound
+          and weak methodology, which is a different and more defensible claim than fraud.
+        </dd>
+      </div>
+    </dl>
+  </section>
+
+  <footer>
+    <p>
+      Organisation details drawn from Epoch AI's benchmarking hub and capabilities index,
+      Artificial Analysis's published methodology, METR's time-horizon work, and UK AISI's
+      Inspect documentation, as of September 2026. Card figures are quoted from the
+      MiniCPM5-2B model card. Reproduction results are pending and will change what the
+      middle sections can claim.
+    </p>
+  </footer>
+
+</div>

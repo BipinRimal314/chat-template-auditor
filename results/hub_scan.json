@@ -1,0 +1,3964 @@
+{
+ "rows": [
+  {
+   "repo": "0bserverx/Qwen3.8-27B-Heretic-Abliterated-Uncensored-GGUF",
+   "family": "0bserverx/Qwen3.8",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "0xSero/GLM-5.3-500B-EXL3-3.0bpw",
+   "family": "0xSero/GLM-5.3",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "OPEN"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "AEON-7/Qwen3.8-27B-AEON-ULTIMATE-UNCENSORED-NVFP4-MIXED",
+   "family": "AEON-7/Qwen3.8",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "Akahsizrr/Cyber-Prime-1-2.6B",
+   "family": "Akahsizrr/Cyber-Prime-1",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "OPEN"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "Bahushruth/Qwen3.6-35B-A3B-abliterated-v4",
+   "family": "Bahushruth/Qwen3.6",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "Edge0/Edge0-35B-A3B-preview",
+   "family": "Edge0/Edge0",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "Jiunsong/supergemma4-26b-uncensored-gguf-v2",
+   "family": "Jiunsong/supergemma4",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": false,
+   "states": {
+    "unset": "OPEN",
+    "true": "NONE",
+    "false": "OPEN"
+   },
+   "convention": null
+  },
+  {
+   "repo": "LiquidAI/LFM2.5-2.6B",
+   "family": "LiquidAI/LFM2.5",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "OPEN"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "Mia-AiLab/Qwen3.8-27B-EXL3-3.5bpw",
+   "family": "Mia-AiLab/Qwen3.8",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "MiniMaxAI/MiniMax-M2",
+   "family": "MiniMaxAI/MiniMax-M2",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "OPEN"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "MiniMaxAI/MiniMax-M2.1",
+   "family": "MiniMaxAI/MiniMax-M2.1",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "OPEN"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "MiniMaxAI/MiniMax-M2.5",
+   "family": "MiniMaxAI/MiniMax-M2.5",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "OPEN"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "MiniMaxAI/MiniMax-M2.7",
+   "family": "MiniMaxAI/MiniMax-M2.7",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "OPEN"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "Nanbeige/Nanbeige4.2-3B",
+   "family": "Nanbeige/Nanbeige4.2",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "OrionLLM/OxCoder-9B",
+   "family": "OrionLLM/OxCoder-9",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "Qwen/QwQ-32B",
+   "family": "Qwen/QwQ-32",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "OPEN"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "Qwen/Qwen3.8-2.4T-A95B",
+   "family": "Qwen/Qwen3.8",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": null
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "TokenRhythm/NeoHorse-1-4B",
+   "family": "TokenRhythm/NeoHorse-1",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "TokenRhythm/NeoHorse-1-9B",
+   "family": "TokenRhythm/NeoHorse-1",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "XHToken/Spark-X2.5-1.7B",
+   "family": "XHToken/Spark-X2.5",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "NONE"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "XHToken/Spark-X2.5-1.7B-Base",
+   "family": "XHToken/Spark-X2.5",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "NONE"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "XHToken/Spark-X2.5-4B",
+   "family": "XHToken/Spark-X2.5",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "NONE"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "XHToken/Spark-X2.5-4B-Base",
+   "family": "XHToken/Spark-X2.5",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "NONE"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "XHToken/Spark-X2.5-4B-FP8",
+   "family": "XHToken/Spark-X2.5",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "NONE"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "XHToken/Spark-X2.5-4B-INT8",
+   "family": "XHToken/Spark-X2.5",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "NONE"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "abenzerps/Nex-N2.5-mini-GGUF",
+   "family": "abenzerps/Nex-N2.5",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "OPEN"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "abenzerps/Spark-X2.5-4B-GGUF",
+   "family": "abenzerps/Spark-X2.5",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "NONE"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "bloomer010/Ling-3.0-tiny-GGUF",
+   "family": "bloomer010/Ling-3.0",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "dealignai/GLM-5.3-CYBERSECURITY-FP8",
+   "family": "dealignai/GLM-5.3",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "OPEN"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "dealignai/GLM-5.3-UNCENSORED-FP8",
+   "family": "dealignai/GLM-5.3",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "OPEN"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "deepseek-ai/DeepSeek-R1",
+   "family": "deepseek-ai/DeepSeek-R1",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "OPEN"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+   "family": "deepseek-ai/DeepSeek-R1",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "OPEN"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
+   "family": "deepseek-ai/DeepSeek-R1",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "OPEN"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "ibm-granite/granite-4.2-3b",
+   "family": "ibm-granite/granite-4.2",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "ibm-granite/granite-4.2-8b",
+   "family": "ibm-granite/granite-4.2",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "inclusionAI/Ling-3.0-flash",
+   "family": "inclusionAI/Ling-3.0",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "inclusionAI/Ling-3.0-flash-Fin",
+   "family": "inclusionAI/Ling-3.0",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "inclusionAI/Ling-3.0-flash-VL",
+   "family": "inclusionAI/Ling-3.0",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "inclusionAI/Ling-3.0-tiny",
+   "family": "inclusionAI/Ling-3.0",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "medismera/Qwen3.8-27B-OBLITERATED-Mythos-Class-Agentic",
+   "family": "medismera/Qwen3.8",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "nex-agi/Nex-N2.5-Max",
+   "family": "nex-agi/Nex-N2.5",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "nex-agi/Nex-N2.5-mini",
+   "family": "nex-agi/Nex-N2.5",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "OPEN"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "nvidia/GLM-5.2-NVFP4",
+   "family": "nvidia/GLM-5.2",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "nvidia/Gemma-4-26B-A4B-NVFP4",
+   "family": "nvidia/Gemma-4",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": false,
+   "states": {
+    "unset": "OPEN",
+    "true": "NONE",
+    "false": "OPEN"
+   },
+   "convention": null
+  },
+  {
+   "repo": "nvidia/Gemma-4-31B-IT-NVFP4",
+   "family": "nvidia/Gemma-4",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": false,
+   "states": {
+    "unset": "OPEN",
+    "true": "NONE",
+    "false": "OPEN"
+   },
+   "convention": null
+  },
+  {
+   "repo": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+   "family": "nvidia/NVIDIA-Nemotron-3",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "nvidia/NVIDIA-Nemotron-3-Nano-4B-BF16",
+   "family": "nvidia/NVIDIA-Nemotron-3",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16",
+   "family": "nvidia/NVIDIA-Nemotron-3",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4",
+   "family": "nvidia/NVIDIA-Nemotron-3.5",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "nvidia/Qwen3.5-122B-A10B-NVFP4",
+   "family": "nvidia/Qwen3.5",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "nvidia/Qwen3.6-35B-A3B-NVFP4",
+   "family": "nvidia/Qwen3.6",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "nvidia/Qwen3.8-27B-NVFP4",
+   "family": "nvidia/Qwen3.8",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "ornith-ai/Ornith-1.0-35B",
+   "family": "ornith-ai/Ornith-1.0",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "ornith-ai/Ornith-1.0-9B",
+   "family": "ornith-ai/Ornith-1.0",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "ornith-ai/Ornith-1.5-35B-A3B",
+   "family": "ornith-ai/Ornith-1.5",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "ornith-ai/Ornith-1.5-35B-A3B-NVFP4",
+   "family": "ornith-ai/Ornith-1.5",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "ornith-ai/Ornith-1.5-9B",
+   "family": "ornith-ai/Ornith-1.5",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "pipecat-ai/phonellm-alpha-1",
+   "family": "pipecat-ai/phonellm-alpha-1",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "poolside/Laguna-S-2.1",
+   "family": "poolside/Laguna-S-2.1",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "NONE"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "prism-ml/Bonsai-27B-mlx-1bit",
+   "family": "prism-ml/Bonsai-27",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "prism-ml/Ternary-Bonsai-27B-mlx-2bit",
+   "family": "prism-ml/Ternary-Bonsai-27",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "sakamakismile/Qwen3.6-27B-Text-NVFP4-MTP",
+   "family": "sakamakismile/Qwen3.6",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "zai-org/GLM-4.7",
+   "family": "zai-org/GLM-4.7",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "NONE"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "zai-org/GLM-4.7-Flash",
+   "family": "zai-org/GLM-4.7",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "NONE"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "zai-org/GLM-5",
+   "family": "zai-org/GLM-5",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "NONE"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "zai-org/GLM-5.1",
+   "family": "zai-org/GLM-5.1",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "NONE"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "zai-org/GLM-5.2",
+   "family": "zai-org/GLM-5.2",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "zai-org/GLM-5.2-FP8",
+   "family": "zai-org/GLM-5.2",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "zai-org/GLM-5.3",
+   "family": "zai-org/GLM-5.3",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "OPEN"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "ByteDance/Ouro-1.4B",
+   "family": "ByteDance/Ouro-1.4",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "HuggingFaceH4/zephyr-7b-alpha",
+   "family": "HuggingFaceH4/zephyr-7",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "HuggingFaceH4/zephyr-7b-beta",
+   "family": "HuggingFaceH4/zephyr-7",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "HuggingFaceTB/SmolLM2-135M-Instruct",
+   "family": "HuggingFaceTB/SmolLM2",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "HuggingFaceTB/SmolLM3-3B",
+   "family": "HuggingFaceTB/SmolLM3",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "CLOSED"
+   },
+   "convention": null
+  },
+  {
+   "repo": "IFM/K2-Horizon-0.9B",
+   "family": "IFM/K2",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "IFM/K2-Horizon-3.7B",
+   "family": "IFM/K2",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "IFM/K2-Horizon-32B",
+   "family": "IFM/K2",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "IFM/K2-Horizon-375B-A23B",
+   "family": "IFM/K2",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "IFM/K2-Horizon-7B",
+   "family": "IFM/K2",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "IFM/K2-Horizon-MoVA-36B-A4B",
+   "family": "IFM/K2",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Jackrong/Qwopus3.8-27B-Flash",
+   "family": "Jackrong/Qwopus3.8",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "CLOSED"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Nanbeige/Nanbeige4.1-3B",
+   "family": "Nanbeige/Nanbeige4.1",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "OpenMOSS-Team/MOSS-Transcribe-Diarize",
+   "family": "OpenMOSS-Team/MOSS",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "CLOSED"
+   },
+   "convention": null
+  },
+  {
+   "repo": "QuantTrio/Qwen3-VL-30B-A3B-Instruct-AWQ",
+   "family": "QuantTrio/Qwen3",
+   "status": "ok",
+   "template_file": "chat_template.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/QwQ-32B-Preview",
+   "family": "Qwen/QwQ-32",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen2-0.5B",
+   "family": "Qwen/Qwen2",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen2.5-0.5B",
+   "family": "Qwen/Qwen2.5",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen2.5-0.5B-Instruct",
+   "family": "Qwen/Qwen2.5",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen2.5-1.5B",
+   "family": "Qwen/Qwen2.5",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen2.5-1.5B-Instruct",
+   "family": "Qwen/Qwen2.5",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen2.5-14B-Instruct",
+   "family": "Qwen/Qwen2.5",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen2.5-14B-Instruct-AWQ",
+   "family": "Qwen/Qwen2.5",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen2.5-32B-Instruct",
+   "family": "Qwen/Qwen2.5",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen2.5-3B-Instruct",
+   "family": "Qwen/Qwen2.5",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen2.5-72B-Instruct",
+   "family": "Qwen/Qwen2.5",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen2.5-7B-Instruct",
+   "family": "Qwen/Qwen2.5",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen2.5-7B-Instruct-AWQ",
+   "family": "Qwen/Qwen2.5",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen2.5-Coder-14B-Instruct",
+   "family": "Qwen/Qwen2.5",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen2.5-Coder-14B-Instruct-AWQ",
+   "family": "Qwen/Qwen2.5",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen2.5-Coder-32B-Instruct",
+   "family": "Qwen/Qwen2.5",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen2.5-Coder-32B-Instruct-AWQ",
+   "family": "Qwen/Qwen2.5",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen2.5-Coder-7B-Instruct",
+   "family": "Qwen/Qwen2.5",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen3-0.6B",
+   "family": "Qwen/Qwen3",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "CLOSED"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen3-0.6B-Base",
+   "family": "Qwen/Qwen3",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "CLOSED"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen3-1.7B",
+   "family": "Qwen/Qwen3",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "CLOSED"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen3-1.7B-Base",
+   "family": "Qwen/Qwen3",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "CLOSED"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen3-14B",
+   "family": "Qwen/Qwen3",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "CLOSED"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen3-14B-AWQ",
+   "family": "Qwen/Qwen3",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "CLOSED"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen3-235B-A22B",
+   "family": "Qwen/Qwen3",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "CLOSED"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen3-30B-A3B",
+   "family": "Qwen/Qwen3",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "CLOSED"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+   "family": "Qwen/Qwen3",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen3-32B",
+   "family": "Qwen/Qwen3",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "CLOSED"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen3-4B",
+   "family": "Qwen/Qwen3",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "CLOSED"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen3-4B-Base",
+   "family": "Qwen/Qwen3",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "CLOSED"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen3-4B-Instruct-2507",
+   "family": "Qwen/Qwen3",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen3-4B-Instruct-2507-FP8",
+   "family": "Qwen/Qwen3",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen3-8B",
+   "family": "Qwen/Qwen3",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "CLOSED"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen3-8B-AWQ",
+   "family": "Qwen/Qwen3",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "CLOSED"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen3-Coder-30B-A3B-Instruct",
+   "family": "Qwen/Qwen3",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen3-Coder-30B-A3B-Instruct-FP8",
+   "family": "Qwen/Qwen3",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen3-Coder-480B-A35B-Instruct",
+   "family": "Qwen/Qwen3",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen3-Coder-Next",
+   "family": "Qwen/Qwen3",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen3-Coder-Next-FP8",
+   "family": "Qwen/Qwen3",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen3-Embedding-0.6B",
+   "family": "Qwen/Qwen3",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "CLOSED"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen3-Embedding-4B",
+   "family": "Qwen/Qwen3",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen3-Embedding-8B",
+   "family": "Qwen/Qwen3",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "Qwen/Qwen3-Next-80B-A3B-Instruct",
+   "family": "Qwen/Qwen3",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "ReliquaryForge/qwen3-4b-base-dapo-v4",
+   "family": "ReliquaryForge/qwen3",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "CLOSED"
+   },
+   "convention": null
+  },
+  {
+   "repo": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+   "family": "TinyLlama/TinyLlama-1.1",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "bosonai/higgs-tts-3-4b",
+   "family": "bosonai/higgs-tts-3",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "cyankiwi/Qwen3-Coder-30B-A3B-Instruct-AWQ-4bit",
+   "family": "cyankiwi/Qwen3",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "deepseek-ai/DeepSeek-R1-0528",
+   "family": "deepseek-ai/DeepSeek-R1",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+   "family": "deepseek-ai/DeepSeek-R1",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "deepseek-ai/DeepSeek-V3",
+   "family": "deepseek-ai/DeepSeek-V3",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "deepseek-ai/DeepSeek-V3-0324",
+   "family": "deepseek-ai/DeepSeek-V3",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "deepseek-ai/DeepSeek-V3.1-Base",
+   "family": "deepseek-ai/DeepSeek-V3.1",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "deepseek-ai/DeepSeek-V3.2-Exp",
+   "family": "deepseek-ai/DeepSeek-V3.2",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "dots-studio/dots.ocr",
+   "family": "dots-studio/dots.ocr",
+   "status": "ok",
+   "template_file": "chat_template.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "dphn/dolphin-2.5-mixtral-8x7b",
+   "family": "dphn/dolphin-2.5",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "dphn/dolphin-2.9.1-yi-1.5-34b",
+   "family": "dphn/dolphin-2.9",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "farbodtavakkoli/OTel-2.0-LLM-31B-IT",
+   "family": "farbodtavakkoli/OTel-2.0",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "farbodtavakkoli/OTel-LLM-27B-IT",
+   "family": "farbodtavakkoli/OTel-LLM-27",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "farbodtavakkoli/OTel-LLM-E4B-IT",
+   "family": "farbodtavakkoli/OTel-LLM-E4",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "ibm-granite/granite-docling-258M",
+   "family": "ibm-granite/granite-docling-258",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "inclusionAI/LLaDA2.2-mini",
+   "family": "inclusionAI/LLaDA2.2",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "livekit/turn-detector",
+   "family": "livekit/turn",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "manycore-research/SpatialLM-Llama-1B",
+   "family": "manycore-research/SpatialLM-Llama-1",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "mattshumer/Reflection-Llama-3.1-70B",
+   "family": "mattshumer/Reflection-Llama-3.1",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "microsoft/Phi-3-mini-128k-instruct",
+   "family": "microsoft/Phi-3",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "microsoft/Phi-3-mini-4k-instruct",
+   "family": "microsoft/Phi-3",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "microsoft/Phi-3.5-mini-instruct",
+   "family": "microsoft/Phi-3.5",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "microsoft/Phi-4-multimodal-instruct",
+   "family": "microsoft/Phi-4",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "microsoft/bitnet-b1.58-2B-4T",
+   "family": "microsoft/bitnet-b1.58",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "microsoft/phi-4",
+   "family": "microsoft/phi-4",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "mistralai/Mistral-7B-Instruct-v0.1",
+   "family": "mistralai/Mistral-7",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "mistralai/Mistral-7B-Instruct-v0.2",
+   "family": "mistralai/Mistral-7",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "mlx-community/Llama-3.1-8B-Instruct-4bit",
+   "family": "mlx-community/Llama-3.1",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "moonshotai/Kimi-K2-Instruct",
+   "family": "moonshotai/Kimi-K2",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "moonshotai/Kimi-K2-Thinking",
+   "family": "moonshotai/Kimi-K2",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "nvidia/Llama-3.1-Nemotron-70B-Instruct-HF",
+   "family": "nvidia/Llama-3.1",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "openai/gpt-oss-120b",
+   "family": "openai/gpt-oss-120",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "openai/gpt-oss-20b",
+   "family": "openai/gpt-oss-20",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "openbmb/MiniCPM5-1B",
+   "family": "openbmb/MiniCPM5",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": true,
+   "unset_matches_thinking_on": false,
+   "states": {
+    "unset": "NONE",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "openbmb/MiniCPM5-2B",
+   "family": "openbmb/MiniCPM5",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": true,
+   "unset_matches_thinking_on": false,
+   "states": {
+    "unset": "NONE",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "openbmb/MiniCPM5-2B-Base",
+   "family": "openbmb/MiniCPM5",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": true,
+   "unset_matches_thinking_on": false,
+   "states": {
+    "unset": "NONE",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "openbmb/MiniCPM5-2B-MLX",
+   "family": "openbmb/MiniCPM5",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": true,
+   "unset_matches_thinking_on": false,
+   "states": {
+    "unset": "NONE",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "openbmb/MiniCPM5-2B-Midtrain",
+   "family": "openbmb/MiniCPM5",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": true,
+   "unset_matches_thinking_on": false,
+   "states": {
+    "unset": "NONE",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "openbmb/MiniCPM5-2B-SFT",
+   "family": "openbmb/MiniCPM5",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": true,
+   "unset_matches_thinking_on": false,
+   "states": {
+    "unset": "NONE",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "openchat/openchat_3.5",
+   "family": "openchat/openchat_3.5",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "superwhisper/s1-mini",
+   "family": "superwhisper/s1",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "CLOSED"
+   },
+   "convention": null
+  },
+  {
+   "repo": "tencent/HY-MT1.5-1.8B",
+   "family": "tencent/HY-MT1.5",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "tencent/Hy-MT2-1.8B",
+   "family": "tencent/Hy-MT2",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "tencent/Hy4-preview",
+   "family": "tencent/Hy4",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "thesysdev/OUI-1",
+   "family": "thesysdev/OUI-1",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "tiiuae/falcon-7b-instruct",
+   "family": "tiiuae/falcon-7",
+   "status": "ok",
+   "template_file": "tokenizer_config.json",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "trl-internal-testing/tiny-GptOssForCausalLM",
+   "family": "trl-internal-testing/tiny",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "trl-internal-testing/tiny-Qwen2ForCausalLM-2.5",
+   "family": "trl-internal-testing/tiny-Qwen2",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "trl-internal-testing/tiny-Qwen3ForCausalLM",
+   "family": "trl-internal-testing/tiny-Qwen3",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "CLOSED"
+   },
+   "convention": null
+  },
+  {
+   "repo": "zai-org/GLM-4.5",
+   "family": "zai-org/GLM-4.5",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "CLOSED"
+   },
+   "convention": null
+  },
+  {
+   "repo": "zai-org/GLM-4.6",
+   "family": "zai-org/GLM-4.6",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "CLOSED"
+   },
+   "convention": null
+  },
+  {
+   "repo": "OBLITERATUS/Qwen3.8-27B-OBLITERATED",
+   "family": "OBLITERATUS/Qwen3.8",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "CLOSED",
+   "verdict": "suppressed",
+   "why": "template injects a closed empty reasoning block; reasoning is suppressed",
+   "honors_flag": true,
+   "unset_matches_thinking_on": false,
+   "states": {
+    "unset": "CLOSED",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "Qwen/Qwen3-Reranker-0.6B",
+   "family": "Qwen/Qwen3",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "CLOSED",
+   "verdict": "suppressed",
+   "why": "template injects a closed empty reasoning block; reasoning is suppressed",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "CLOSED",
+    "true": "CLOSED",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "Qwen/Qwen3-Reranker-4B",
+   "family": "Qwen/Qwen3",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "CLOSED",
+   "verdict": "suppressed",
+   "why": "template injects a closed empty reasoning block; reasoning is suppressed",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "CLOSED",
+    "true": "CLOSED",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "01-ai/Yi-34B",
+   "family": "01-ai/Yi-34",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "Abiray/MiniCPM5-2B-GGUF",
+   "family": "Abiray/MiniCPM5",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "AtomicChat/Qwen3.8-Flash-Next-GGUF",
+   "family": "AtomicChat/Qwen3.8",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "BreezeBlue/Breeze-TTS-2",
+   "family": "BreezeBlue/Breeze-TTS-2",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "Cactus-Compute/needle2",
+   "family": "Cactus-Compute/needle2",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "Chain-GPT/Solidity-LLM",
+   "family": "Chain-GPT/Solidity",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "CohereLabs/c4ai-command-r-plus",
+   "family": "CohereLabs/c4",
+   "status": "gated",
+   "template_file": null
+  },
+  {
+   "repo": "CohereLabs/c4ai-command-r-v01",
+   "family": "CohereLabs/c4",
+   "status": "gated",
+   "template_file": null
+  },
+  {
+   "repo": "EleutherAI/gpt-j-6b",
+   "family": "EleutherAI/gpt-j-6",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "EleutherAI/pythia-160m",
+   "family": "EleutherAI/pythia-160",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "EleutherAI/pythia-70m-deduped",
+   "family": "EleutherAI/pythia-70",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "Extropic-AI/Z1T-0",
+   "family": "Extropic-AI/Z1",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "FWKV/Myosotis-1-base",
+   "family": "FWKV/Myosotis-1",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "HuggingFaceTB/SmolLM2-135M",
+   "family": "HuggingFaceTB/SmolLM2",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "HuggingFaceTB/SmolLM3-3B-Base",
+   "family": "HuggingFaceTB/SmolLM3",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "IFM/K2-Horizon-0.9B-GGUF",
+   "family": "IFM/K2",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "IFM/K2-Horizon-3.7B-GGUF",
+   "family": "IFM/K2",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "IFM/K2-Horizon-32B-GGUF",
+   "family": "IFM/K2",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "IFM/K2-Horizon-7B-GGUF",
+   "family": "IFM/K2",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "IFM/K2-Horizon-7B-Uno",
+   "family": "IFM/K2",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "IFM/K2-Horizon-MoVA-36B-A4B-GGUF",
+   "family": "IFM/K2",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "Jackrong/Qwopus3.8-27B-Flash-GGUF",
+   "family": "Jackrong/Qwopus3.8",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "JonathanColetti/Qwen3.8-27B-Uncensored-GGUF",
+   "family": "JonathanColetti/Qwen3.8",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "LiquidAI/LFM2.5-2.6B-GGUF",
+   "family": "LiquidAI/LFM2.5",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "NANI-Nithin/K2-Horizon-MoVA-36B-A4B-GGUF",
+   "family": "NANI-Nithin/K2",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "Qwen/Qwen-72B",
+   "family": "Qwen/Qwen-72",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "Qwen/Qwen2.5-Coder-7B-Instruct-GGUF",
+   "family": "Qwen/Qwen2.5",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "RadixArk/Kimi-K3-DSpark",
+   "family": "RadixArk/Kimi-K3",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "SupraLabs/SupraNeo-4M",
+   "family": "SupraLabs/SupraNeo-4",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "XHToken/Spark-X2.5-1.7B-GGUF",
+   "family": "XHToken/Spark-X2.5",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "XHToken/Spark-X2.5-4B-GGUF",
+   "family": "XHToken/Spark-X2.5",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "agentionai/Qwen3.8-Flash-Next-ROCmFP4-FAST-imatrix-GGUF",
+   "family": "agentionai/Qwen3.8",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "ai21labs/Jamba-v0.1",
+   "family": "ai21labs/Jamba-v0.1",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "allenai/OLMo-2-0425-1B",
+   "family": "allenai/OLMo-2",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "antirez/deepseek-v4-gguf",
+   "family": "antirez/deepseek-v4",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "apple/OpenELM-1_1B-Instruct",
+   "family": "apple/OpenELM-1",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "bigcode/starcoder",
+   "family": "bigcode/starcoder",
+   "status": "gated",
+   "template_file": null
+  },
+  {
+   "repo": "bigscience/bloom",
+   "family": "bigscience/bloom",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "bodhan-ai/indic-speak",
+   "family": "bodhan-ai/indic",
+   "status": "gated",
+   "template_file": null
+  },
+  {
+   "repo": "deepseek-ai/DeepSeek-V3.2",
+   "family": "deepseek-ai/DeepSeek-V3.2",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "deepseek-ai/DeepSeek-V4-Flash",
+   "family": "deepseek-ai/DeepSeek-V4",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "deepseek-ai/DeepSeek-V4-Flash-0731",
+   "family": "deepseek-ai/DeepSeek-V4",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "deepseek-ai/DeepSeek-V4-Flash-Vision-Exp",
+   "family": "deepseek-ai/DeepSeek-V4",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "deepseek-ai/DeepSeek-V4-Pro",
+   "family": "deepseek-ai/DeepSeek-V4",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "deepseek-ai/DeepSeek-V4.1-Flash",
+   "family": "deepseek-ai/DeepSeek-V4.1",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "distilbert/distilgpt2",
+   "family": "distilbert/distilgpt2",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "empero-ai/Qwen3.8-9B-Distill-GGUF",
+   "family": "empero-ai/Qwen3.8",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "facebook/opt-125m",
+   "family": "facebook/opt-125",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "gdiamos/amx-reasoning-v1-instruct",
+   "family": "gdiamos/amx-reasoning-v1",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "google/functiongemma-270m-it",
+   "family": "google/functiongemma-270",
+   "status": "gated",
+   "template_file": null
+  },
+  {
+   "repo": "google/gemma-2-2b-it",
+   "family": "google/gemma-2",
+   "status": "gated",
+   "template_file": null
+  },
+  {
+   "repo": "google/gemma-2b",
+   "family": "google/gemma-2",
+   "status": "gated",
+   "template_file": null
+  },
+  {
+   "repo": "google/gemma-3-1b-it",
+   "family": "google/gemma-3",
+   "status": "gated",
+   "template_file": null
+  },
+  {
+   "repo": "google/gemma-3-270m",
+   "family": "google/gemma-3",
+   "status": "gated",
+   "template_file": null
+  },
+  {
+   "repo": "google/gemma-7b",
+   "family": "google/gemma-7",
+   "status": "gated",
+   "template_file": null
+  },
+  {
+   "repo": "google/gemma-7b-it",
+   "family": "google/gemma-7",
+   "status": "gated",
+   "template_file": null
+  },
+  {
+   "repo": "ibm-research/PowerMoE-3b",
+   "family": "ibm-research/PowerMoE-3",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "incoai/Qwen3.8-27B-DFlash2",
+   "family": "incoai/Qwen3.8",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "legraphista/glm-4-9b-chat-IMat-GGUF",
+   "family": "legraphista/glm-4",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "menezesbruno/manaca-1b-base",
+   "family": "menezesbruno/manaca-1",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "meta-llama/Llama-2-13b-chat-hf",
+   "family": "meta-llama/Llama-2",
+   "status": "gated",
+   "template_file": null
+  },
+  {
+   "repo": "meta-llama/Llama-2-70b-chat-hf",
+   "family": "meta-llama/Llama-2",
+   "status": "gated",
+   "template_file": null
+  },
+  {
+   "repo": "meta-llama/Llama-2-7b",
+   "family": "meta-llama/Llama-2",
+   "status": "gated",
+   "template_file": null
+  },
+  {
+   "repo": "meta-llama/Llama-2-7b-chat-hf",
+   "family": "meta-llama/Llama-2",
+   "status": "gated",
+   "template_file": null
+  },
+  {
+   "repo": "meta-llama/Llama-2-7b-hf",
+   "family": "meta-llama/Llama-2",
+   "status": "gated",
+   "template_file": null
+  },
+  {
+   "repo": "meta-llama/Llama-3.1-405B",
+   "family": "meta-llama/Llama-3.1",
+   "status": "gated",
+   "template_file": null
+  },
+  {
+   "repo": "meta-llama/Llama-3.1-8B",
+   "family": "meta-llama/Llama-3.1",
+   "status": "gated",
+   "template_file": null
+  },
+  {
+   "repo": "meta-llama/Llama-3.1-8B-Instruct",
+   "family": "meta-llama/Llama-3.1",
+   "status": "gated",
+   "template_file": null
+  },
+  {
+   "repo": "meta-llama/Llama-3.2-1B",
+   "family": "meta-llama/Llama-3.2",
+   "status": "gated",
+   "template_file": null
+  },
+  {
+   "repo": "meta-llama/Llama-3.2-1B-Instruct",
+   "family": "meta-llama/Llama-3.2",
+   "status": "gated",
+   "template_file": null
+  },
+  {
+   "repo": "meta-llama/Llama-3.2-3B-Instruct",
+   "family": "meta-llama/Llama-3.2",
+   "status": "gated",
+   "template_file": null
+  },
+  {
+   "repo": "meta-llama/Llama-3.3-70B-Instruct",
+   "family": "meta-llama/Llama-3.3",
+   "status": "gated",
+   "template_file": null
+  },
+  {
+   "repo": "meta-llama/Meta-Llama-3-70B-Instruct",
+   "family": "meta-llama/Meta-Llama-3",
+   "status": "gated",
+   "template_file": null
+  },
+  {
+   "repo": "meta-llama/Meta-Llama-3-8B",
+   "family": "meta-llama/Meta-Llama-3",
+   "status": "gated",
+   "template_file": null
+  },
+  {
+   "repo": "meta-llama/Meta-Llama-3-8B-Instruct",
+   "family": "meta-llama/Meta-Llama-3",
+   "status": "gated",
+   "template_file": null
+  },
+  {
+   "repo": "microsoft/phi-1_5",
+   "family": "microsoft/phi-1",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "microsoft/phi-2",
+   "family": "microsoft/phi-2",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "mistralai/Mistral-7B-v0.1",
+   "family": "mistralai/Mistral-7",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "nerkyor/Qwen3.8-27B-EfficientThink-Uncensored-K3-Opus5-Grok4.6-GPT5.6Sol-SFT-SimPO-DFlash2",
+   "family": "nerkyor/Qwen3.8",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "nex-agi/Nex-N2.5-Pro",
+   "family": "nex-agi/Nex-N2.5",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "nvidia/DeepSeek-V4-Flash-0731-NVFP4",
+   "family": "nvidia/DeepSeek-V4",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "openai-community/gpt2",
+   "family": "openai-community/gpt2",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "openai-community/gpt2-large",
+   "family": "openai-community/gpt2",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "openbmb/MiniCPM5-2B-DSpark",
+   "family": "openbmb/MiniCPM5",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "openbmb/MiniCPM5-2B-GGUF",
+   "family": "openbmb/MiniCPM5",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "orcarouter/DeepSeek-V4-Flash-Vision-Uncensored",
+   "family": "orcarouter/DeepSeek-V4",
+   "status": "gated",
+   "template_file": null
+  },
+  {
+   "repo": "orcarouter/GLM-5.3-Flash-Uncensored-FP8",
+   "family": "orcarouter/GLM-5.3",
+   "status": "gated",
+   "template_file": null
+  },
+  {
+   "repo": "ornith-ai/Ornith-1.0-35B-GGUF",
+   "family": "ornith-ai/Ornith-1.0",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "ornith-ai/Ornith-1.0-9B-GGUF",
+   "family": "ornith-ai/Ornith-1.0",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "ornith-ai/Ornith-1.5-35B-A3B-GGUF",
+   "family": "ornith-ai/Ornith-1.5",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "ornith-ai/Ornith-1.5-397B-GGUF",
+   "family": "ornith-ai/Ornith-1.5",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "ornith-ai/Ornith-1.5-9B-GGUF",
+   "family": "ornith-ai/Ornith-1.5",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "peft-internal-testing/tiny-random-OPTForCausalLM",
+   "family": "peft-internal-testing/tiny",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "peonist-ai/halogen-qwen3.8-flash-next",
+   "family": "peonist-ai/halogen-qwen3.8",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "prism-ml/Bonsai-27B-gguf",
+   "family": "prism-ml/Bonsai-27",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "prism-ml/Ternary-Bonsai-27B-gguf",
+   "family": "prism-ml/Ternary-Bonsai-27",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "rumik-ai/rumik-oss-1",
+   "family": "rumik-ai/rumik-oss-1",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "snkii/Sori-1B",
+   "family": "snkii/Sori-1",
+   "status": "gated",
+   "template_file": null
+  },
+  {
+   "repo": "sshleifer/tiny-gpt2",
+   "family": "sshleifer/tiny-gpt2",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "tencent/HunyuanImage-3.0",
+   "family": "tencent/HunyuanImage-3.0",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "tiiuae/falcon-180B",
+   "family": "tiiuae/falcon-180",
+   "status": "gated",
+   "template_file": null
+  },
+  {
+   "repo": "tiiuae/falcon-40b",
+   "family": "tiiuae/falcon-40",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "tiiuae/falcon-40b-instruct",
+   "family": "tiiuae/falcon-40",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "tiiuae/falcon-7b",
+   "family": "tiiuae/falcon-7",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "trl-internal-testing/tiny-random-LlamaForCausalLM",
+   "family": "trl-internal-testing/tiny",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "unsloth/DeepSeek-R1-GGUF",
+   "family": "unsloth/DeepSeek-R1",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "unsloth/GLM-5.3-Flash-GGUF",
+   "family": "unsloth/GLM-5.3",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF",
+   "family": "unsloth/Qwen3",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "vikhyatk/moondream2",
+   "family": "vikhyatk/moondream2",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "xai-org/grok-1",
+   "family": "xai-org/grok-1",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "yuxinlu1/gemma-4-12B-agentic-fable5-composer2.5-v2-3.5x-tau2-GGUF",
+   "family": "yuxinlu1/gemma-4",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "yuxinlu1/gemma-4-12B-coder-fable5-composer2.5-v1-GGUF",
+   "family": "yuxinlu1/gemma-4",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "z-lab/Qwen3.8-27B-DFlash2-GGUF",
+   "family": "z-lab/Qwen3.8",
+   "status": "no-template",
+   "template_file": null
+  },
+  {
+   "repo": "zerodigest/Qwen3.8-27B-Uncensored-YMQ-MTP-GGUF",
+   "family": "zerodigest/Qwen3.8",
+   "status": "no-template",
+   "template_file": null
+  }
+ ],
+ "inversions": [
+  {
+   "family": "Qwen/QwQ-32",
+   "states": [
+    "NONE",
+    "OPEN"
+   ],
+   "members": [
+    [
+     "Qwen/QwQ-32B",
+     "OPEN"
+    ],
+    [
+     "Qwen/QwQ-32B-Preview",
+     "NONE"
+    ]
+   ]
+  },
+  {
+   "family": "Qwen/Qwen3",
+   "states": [
+    "CLOSED",
+    "NONE"
+   ],
+   "members": [
+    [
+     "Qwen/Qwen3-0.6B",
+     "NONE"
+    ],
+    [
+     "Qwen/Qwen3-0.6B-Base",
+     "NONE"
+    ],
+    [
+     "Qwen/Qwen3-1.7B",
+     "NONE"
+    ],
+    [
+     "Qwen/Qwen3-1.7B-Base",
+     "NONE"
+    ],
+    [
+     "Qwen/Qwen3-14B",
+     "NONE"
+    ],
+    [
+     "Qwen/Qwen3-14B-AWQ",
+     "NONE"
+    ],
+    [
+     "Qwen/Qwen3-235B-A22B",
+     "NONE"
+    ],
+    [
+     "Qwen/Qwen3-30B-A3B",
+     "NONE"
+    ],
+    [
+     "Qwen/Qwen3-30B-A3B-Instruct-2507",
+     "NONE"
+    ],
+    [
+     "Qwen/Qwen3-32B",
+     "NONE"
+    ],
+    [
+     "Qwen/Qwen3-4B",
+     "NONE"
+    ],
+    [
+     "Qwen/Qwen3-4B-Base",
+     "NONE"
+    ],
+    [
+     "Qwen/Qwen3-4B-Instruct-2507",
+     "NONE"
+    ],
+    [
+     "Qwen/Qwen3-4B-Instruct-2507-FP8",
+     "NONE"
+    ],
+    [
+     "Qwen/Qwen3-8B",
+     "NONE"
+    ],
+    [
+     "Qwen/Qwen3-8B-AWQ",
+     "NONE"
+    ],
+    [
+     "Qwen/Qwen3-Coder-30B-A3B-Instruct",
+     "NONE"
+    ],
+    [
+     "Qwen/Qwen3-Coder-30B-A3B-Instruct-FP8",
+     "NONE"
+    ],
+    [
+     "Qwen/Qwen3-Coder-480B-A35B-Instruct",
+     "NONE"
+    ],
+    [
+     "Qwen/Qwen3-Coder-Next",
+     "NONE"
+    ],
+    [
+     "Qwen/Qwen3-Coder-Next-FP8",
+     "NONE"
+    ],
+    [
+     "Qwen/Qwen3-Embedding-0.6B",
+     "NONE"
+    ],
+    [
+     "Qwen/Qwen3-Embedding-4B",
+     "NONE"
+    ],
+    [
+     "Qwen/Qwen3-Embedding-8B",
+     "NONE"
+    ],
+    [
+     "Qwen/Qwen3-Next-80B-A3B-Instruct",
+     "NONE"
+    ],
+    [
+     "Qwen/Qwen3-Reranker-0.6B",
+     "CLOSED"
+    ],
+    [
+     "Qwen/Qwen3-Reranker-4B",
+     "CLOSED"
+    ]
+   ]
+  },
+  {
+   "family": "deepseek-ai/DeepSeek-R1",
+   "states": [
+    "NONE",
+    "OPEN"
+   ],
+   "members": [
+    [
+     "deepseek-ai/DeepSeek-R1",
+     "OPEN"
+    ],
+    [
+     "deepseek-ai/DeepSeek-R1-0528",
+     "NONE"
+    ],
+    [
+     "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+     "NONE"
+    ],
+    [
+     "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+     "OPEN"
+    ],
+    [
+     "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
+     "OPEN"
+    ]
+   ]
+  }
+ ]
+}

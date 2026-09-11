@@ -1,0 +1,176 @@
+{
+ "rows": [
+  {
+   "repo": "Qwen/Qwen3.5-4B",
+   "family": "Qwen/Qwen3.5",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "ibm-granite/granite-4.2-3b",
+   "family": "ibm-granite/granite-4.2",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "nvidia/NVIDIA-Nemotron-3-Nano-4B-BF16",
+   "family": "nvidia/NVIDIA-Nemotron-3",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "OPEN",
+   "verdict": "forced-on",
+   "why": "template pre-opens a reasoning block; the model must reason",
+   "honors_flag": true,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "OPEN",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "google/gemma-4-e2b-it",
+   "family": "google/gemma-4",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "google/gemma-4-e4b-it",
+   "family": "google/gemma-4",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": "NONE",
+    "true": "NONE",
+    "false": "NONE"
+   },
+   "convention": null
+  },
+  {
+   "repo": "openbmb/MiniCPM5-2B",
+   "family": "openbmb/MiniCPM5",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "NONE",
+   "verdict": "model-choice",
+   "why": "no reasoning prefill; the model decides",
+   "honors_flag": true,
+   "unset_matches_thinking_on": false,
+   "states": {
+    "unset": "NONE",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "Qwen/Qwen3.5-2B",
+   "family": "Qwen/Qwen3.5",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": "CLOSED",
+   "verdict": "suppressed",
+   "why": "template injects a closed empty reasoning block; reasoning is suppressed",
+   "honors_flag": true,
+   "unset_matches_thinking_on": false,
+   "states": {
+    "unset": "CLOSED",
+    "true": "OPEN",
+    "false": "CLOSED"
+   },
+   "convention": "think"
+  },
+  {
+   "repo": "LiquidAI/LFM2.5-2.6B",
+   "family": "LiquidAI/LFM2.5",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": null,
+   "verdict": "unknown",
+   "why": "",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": null,
+    "true": null,
+    "false": null
+   },
+   "convention": null
+  },
+  {
+   "repo": "LiquidAI/LFM2.5-8B-A1B",
+   "family": "LiquidAI/LFM2.5",
+   "status": "ok",
+   "template_file": "chat_template.jinja",
+   "default_state": null,
+   "verdict": "unknown",
+   "why": "",
+   "honors_flag": false,
+   "unset_matches_thinking_on": true,
+   "states": {
+    "unset": null,
+    "true": null,
+    "false": null
+   },
+   "convention": null
+  }
+ ],
+ "inversions": [
+  {
+   "family": "Qwen/Qwen3.5",
+   "states": [
+    "CLOSED",
+    "OPEN"
+   ],
+   "members": [
+    [
+     "Qwen/Qwen3.5-2B",
+     "CLOSED"
+    ],
+    [
+     "Qwen/Qwen3.5-4B",
+     "OPEN"
+    ]
+   ]
+  }
+ ]
+}
