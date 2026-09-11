@@ -132,6 +132,40 @@ python eval_code.py   --model qwen3.5-2b  --n 3          --backend vllm
 python eval_nolima.py --model minicpm5-2b --lengths 64000
 ```
 
+## Backend agreement
+
+Every cross-machine comparison here assumes MLX and vLLM produce equivalent
+results on the same weights. That assumption gets measured rather than trusted.
+
+```bash
+python check_backends.py run --model minicpm5-2b        # on each machine
+python check_backends.py compare results/agree_*_minicpm5-2b.jsonl
+```
+
+Decoding is greedy, because the two backends use different RNGs and a seeded
+sample can never match across them. On identical weights they should emit
+identical tokens until floating-point differences accumulate, so the script
+reports where each pair first diverges alongside whether the final answers match.
+
+Run this before trusting any number produced on a different machine from the one
+it will be compared against.
+
+## Splitting work across machines
+
+A suite cannot straddle machines; the unit you split is a whole suite, both
+models included.
+
+| Stage | Where | Why |
+|---|---|---|
+| AIME, all variants | GPU box | 4-6x from batching, and it is not the machine you are typing on |
+| Bug repair | GPU box | cheap there; note the suite is saturated and will not carry a claim |
+| NoLiMa to 32k | GPU box | fits in 8 GB, prefill-dominated, GPU wins |
+| NoLiMa at 64k | larger-memory machine | MiniCPM5 bf16 + 64k cache is ~7.8 GB, will not fit in 8 GB |
+| Backend agreement | both | that is the point of it |
+
+64k is the only stage an 8 GB card cannot do, and it is also the lowest-value
+one, since 32k already probes the long-context claim. Defer it.
+
 ## Status
 
 | Suite | State |
