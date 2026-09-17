@@ -35,7 +35,7 @@ def resolve_path(key, backend):
     """Prefer a local directory if one was fetched, else the hub id."""
     spec = MODELS[key]
     local = spec.get("local")
-    if local and os.path.isdir(local) and backend == "mlx":
+    if local and os.path.isdir(local):
         return local
     return spec["hf"] if backend == "vllm" else spec["mlx"]
 
@@ -92,16 +92,61 @@ class MlxBackend:
         return out
 
 
+def prepare_cuda_env():
+    """Make a pip-only CUDA install usable without a system CUDA toolkit.
+
+    `pip install vllm` pulls its own nvcc and ninja but leaves neither on PATH,
+    so vLLM's kernel compilation fails with "Could not find nvcc". Point CUDA_HOME
+    at the wheel's toolkit and put both on PATH.
+
+    flashinfer's vendored CCCL headers do not compile against that nvcc, so its
+    JIT sampling kernel is disabled and vLLM falls back to the PyTorch sampler.
+    That changes which sampling code path runs, so it is printed rather than
+    applied silently: a suite must not straddle this setting any more than it
+    may straddle backends.
+
+    Anything already set in the environment wins, so this can be overridden.
+    """
+    import glob, sys
+    changed = []
+    root = os.path.dirname(os.path.dirname(os.path.abspath(sys.executable)))
+    if not os.environ.get("CUDA_HOME"):
+        hits = sorted(glob.glob(os.path.join(
+            root, "lib", "python*", "site-packages", "nvidia", "cu*", "bin", "nvcc")))
+        if hits:
+            home = os.path.dirname(os.path.dirname(hits[-1]))
+            os.environ["CUDA_HOME"] = home
+            changed.append(f"CUDA_HOME={home}")
+    binpath = os.path.join(root, "bin")
+    extra = [p for p in (binpath, os.path.join(os.environ.get("CUDA_HOME", ""), "bin"))
+             if p and os.path.isdir(p) and p not in os.environ.get("PATH", "").split(os.pathsep)]
+    if extra:
+        os.environ["PATH"] = os.pathsep.join(extra + [os.environ.get("PATH", "")])
+        changed.append("PATH+=" + os.pathsep.join(extra))
+    if "VLLM_USE_FLASHINFER_SAMPLER" not in os.environ:
+        os.environ["VLLM_USE_FLASHINFER_SAMPLER"] = "0"
+        changed.append("VLLM_USE_FLASHINFER_SAMPLER=0 (torch sampler, not flashinfer)")
+    for c in changed:
+        print(f"[vllm-env] {c}", flush=True)
+
+
 class VllmBackend:
     name = "vllm"
 
-    def __init__(self, key, max_model_len=None, gpu_memory_utilization=0.92, **kw):
+    def __init__(self, key, max_model_len=None, gpu_memory_utilization=0.92,
+                 enforce_eager=False, **kw):
+        prepare_cuda_env()
         from vllm import LLM
         self.path = resolve_path(key, "vllm")
         t = time.time()
+        # CUDA graphs cost roughly 0.9 GiB of the KV budget. On an 8 GB card that
+        # is most of the cache: MiniCPM5-2B measures 12,928 KV tokens with graphs
+        # and 40,432 without, so long-context runs need enforce_eager even though
+        # it gives up some decode speed.
         self.llm = LLM(model=self.path, dtype="bfloat16",
                        max_model_len=max_model_len,
                        gpu_memory_utilization=gpu_memory_utilization,
+                       enforce_eager=enforce_eager,
                        trust_remote_code=True)
         self.tokenizer = load_tokenizer(key, "vllm")
         print(f"[vllm] loaded {self.path} in {time.time()-t:.1f}s", flush=True)

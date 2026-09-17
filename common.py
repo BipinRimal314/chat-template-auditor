@@ -53,16 +53,35 @@ def as_aime_int(s):
 
 def jsonl_append(path, recs):
     Path(path).parent.mkdir(parents=True, exist_ok=True)
+    # Cut off a half-written final line before appending, or the next record
+    # would be glued onto it and the corruption would stop being the last line.
+    p = Path(path)
+    if p.exists() and p.stat().st_size:
+        data = p.read_bytes()
+        if not data.endswith(b"\n"):
+            with open(p, "r+b") as f:
+                f.truncate(data.rfind(b"\n") + 1)
     with open(path, "a") as f:
         for r in recs:
             f.write(json.dumps(r) + "\n")
 
 
 def jsonl_read(path):
+    """A power cut mid-append can leave a half-written final line. Drop it so the
+    run resumes and regenerates that record; corruption anywhere else still raises."""
     p = Path(path)
     if not p.exists():
         return []
-    return [json.loads(l) for l in p.read_text().splitlines() if l.strip()]
+    lines = [l for l in p.read_text().splitlines() if l.strip()]
+    rows = []
+    for i, l in enumerate(lines):
+        try:
+            rows.append(json.loads(l))
+        except json.JSONDecodeError:
+            if i != len(lines) - 1:
+                raise
+            print(f"[jsonl] dropping truncated last line of {p.name}", flush=True)
+    return rows
 
 
 def run_chunked(backend, items, out_path, chunk_size, max_tokens, temp, top_p,

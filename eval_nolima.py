@@ -89,6 +89,9 @@ def main():
     ap.add_argument("--chunk-size", type=int, default=None)
     ap.add_argument("--max-model-len", type=int, default=None)
     ap.add_argument("--gpu-mem", type=float, default=0.92)
+    ap.add_argument("--eager", action="store_true",
+                    help="disable CUDA graphs; frees ~0.9 GiB of KV cache, "
+                         "needed for long contexts on an 8 GB card")
     ap.add_argument("--out", default=None)
     a = ap.parse_args()
 
@@ -103,7 +106,8 @@ def main():
     need = max(lengths) + a.max_tokens + 2048
     backend = get_backend(a.model, a.backend,
                           max_model_len=a.max_model_len or need,
-                          gpu_memory_utilization=a.gpu_mem)
+                          gpu_memory_utilization=a.gpu_mem,
+                          enforce_eager=a.eager)
     chunk = a.chunk_size or (1 if backend.name == "mlx" else 8)
 
     items = []

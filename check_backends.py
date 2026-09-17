@@ -28,7 +28,8 @@ def run(a):
     ds = datasets.load_dataset("MathArena/aime_2025", split="train").select(range(PROBLEMS))
     backend = get_backend(a.model, a.backend,
                           max_model_len=a.max_tokens + 2048,
-                          gpu_memory_utilization=a.gpu_mem)
+                          gpu_memory_utilization=a.gpu_mem,
+                          enforce_eager=a.eager)
     out = a.out or f"results/agree_{backend.name}_{a.model}.jsonl"
     Path(out).unlink(missing_ok=True)
 
@@ -114,6 +115,8 @@ def main():
     r.add_argument("--backend", default="auto", choices=["auto", "mlx", "vllm"])
     r.add_argument("--max-tokens", type=int, default=8192)
     r.add_argument("--gpu-mem", type=float, default=0.92)
+    r.add_argument("--eager", action="store_true",
+                   help="disable CUDA graphs; frees ~0.9 GiB of KV cache")
     r.add_argument("--out", default=None)
 
     c = sub.add_parser("compare")
