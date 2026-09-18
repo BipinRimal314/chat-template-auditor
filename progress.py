@@ -51,7 +51,7 @@ def stage_times():
     ticks = []
     gpu = OUT / "gpu.log"
     if gpu.exists():
-        for line in gpu.read_text().splitlines():
+        for line in gpu.read_text(errors="replace").splitlines():
             try:
                 ticks.append(datetime.strptime(line[:19], "%Y-%m-%d %H:%M:%S").timestamp())
             except ValueError:
@@ -176,7 +176,10 @@ def main():
 
     gpu = OUT / "gpu.log"
     if gpu.exists():
-        lines = gpu.read_text().splitlines()
+        # A power cut can leave NUL bytes or a half line at the end; keep only
+        # well-formed readings.
+        lines = [l for l in gpu.read_text(errors="replace").splitlines()
+                 if re.match(r"\d{4}-\d\d-\d\d \d\d:\d\d:\d\d \S", l)]
         temps = [int(m.group(1)) for l in lines if (m := re.search(r"temp=(\d+)", l))]
         if temps:
             print(f"\nGPU  now {lines[-1].split(' ', 2)[2]}   peak temp {max(temps)}C   watchdog stops at 85C")
