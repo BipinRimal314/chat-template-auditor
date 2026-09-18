@@ -33,15 +33,46 @@ def read_rows(p):
 
 
 def stage_times():
-    starts, ends = {}, {}
+    """Per stage: (first start, last end or None, total running seconds).
+
+    A stage can run in several sessions when the sweep is stopped and resumed.
+    A session that ends without an "end" line (killed, power cut) is taken to
+    have stopped at the last GPU log reading before the next start, so the
+    overnight gap is not counted as running time.
+    """
+    events = []
     log = OUT / "sweep.log"
     if log.exists():
         for line in log.read_text().splitlines():
             m = re.match(r"=== (\S+ \S+) (start|end) (\w+)", line)
             if m:
                 t = datetime.strptime(m.group(1), "%Y-%m-%d %H:%M:%S").timestamp()
-                (starts if m.group(2) == "start" else ends)[m.group(3)] = t
-    return starts, ends
+                events.append((t, m.group(2), m.group(3)))
+    ticks = []
+    gpu = OUT / "gpu.log"
+    if gpu.exists():
+        for line in gpu.read_text().splitlines():
+            try:
+                ticks.append(datetime.strptime(line[:19], "%Y-%m-%d %H:%M:%S").timestamp())
+            except ValueError:
+                pass
+    starts = [t for t, kind, _ in events if kind == "start"]
+    out = {}
+    for i, (t, kind, name) in enumerate(events):
+        if kind != "start":
+            continue
+        end = next((u for u, k, n in events[i + 1:] if k == "end" and n == name), None)
+        nxt = next((u for u in starts if u > t), None)
+        if end is not None and (nxt is None or end <= nxt):
+            stop, finished = end, True
+        elif nxt is not None:
+            stop = max([u for u in ticks if t <= u < nxt], default=t)
+            finished = False
+        else:
+            stop, finished = time.time(), False
+        first, _, total = out.get(name, (t, None, 0.0))
+        out[name] = (first, stop if finished else None, total + (stop - t))
+    return out
 
 
 def in_flight(name):
@@ -78,13 +109,12 @@ def alive(pid):
         return False
 
 
-def health(starts, ends, now):
+def health(times, now):
     """Working, stuck, or stopped, from signals that do not depend on a result
     being saved. A batch of 32k-token answers can go most of an hour without
     saving anything, so a quiet results file alone proves nothing."""
     print("\nHEALTH")
     pgid = OUT / "stage.pgid"
-    running = [n for n in starts if n not in ends]
     pid = int(pgid.read_text().strip()) if pgid.exists() and pgid.read_text().strip() else None
     util, temp = gpu_live()
     proc_ok = pid is not None and alive(pid)
@@ -118,7 +148,7 @@ def health(starts, ends, now):
 
 
 def main():
-    starts, ends = stage_times()
+    times = stage_times()
     now = time.time()
     print(f"AIME 2025 sweep on RTX 4060   {datetime.now():%Y-%m-%d %H:%M:%S}\n")
     head = f"{'stage':<26}{'done':>9}{'correct':>9}{'score':>8}{'card':>7}{'cut off':>9}{'avg tok':>9}{'elapsed':>9}{'eta':>9}"
@@ -131,9 +161,9 @@ def main():
         cut = sum(r["truncated"] for r in rows)
         tok = sum(r["gen_tokens"] for r in rows) / n if n else 0
         score = f"{100 * ok / n:.1f}" if n else "-"
-        if name in starts:
-            el = (ends.get(name) or now) - starts[name]
-            status = "done" if name in ends else "running"
+        if name in times:
+            _, finished_at, el = times[name]
+            status = "done" if finished_at else "running"
             eta = "-" if status == "done" or not n else hm(el / n * (TOTAL - n))
             el_s = hm(el)
         else:
@@ -152,7 +182,7 @@ def main():
             print(f"\nGPU  now {lines[-1].split(' ', 2)[2]}   peak temp {max(temps)}C   watchdog stops at 85C")
         if any("WATCHDOG" in l for l in lines):
             print("WATCHDOG STOPPED THE RUN. Restart with the command in run_aime_4060.sh.")
-    health(starts, ends, now)
+    health(times, now)
     print("\nscore = % of finished attempts correct. Early scores are noisy and favour short answers.")
     print("cut off = answers that hit the 32,768-token limit. Compare scores only if these stay low for both models.")
 
