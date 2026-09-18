@@ -114,7 +114,11 @@ stage qwen_nothink  --model qwen3.5-2b  "${COMMON[@]}" --no-thinking --chunk-siz
       --out "$OUT/aime2025_qwen3.5-2b_nothink.jsonl" || exit 1
 stage qwen_think    --model qwen3.5-2b  "${COMMON[@]}"               --chunk-size 6 \
       --out "$OUT/aime2025_qwen3.5-2b.jsonl"         || exit 1
-stage minicpm_think --model minicpm5-2b "${COMMON[@]}"               --chunk-size 4 \
+# One answer at a time: with 4 in flight, two long MiniCPM5 answers outgrew the
+# ~36k-token KV cache, vLLM preempted one and later rebuilt it in 8,192-token
+# prefill chunks, and those 96-192 MiB activations hit fragmented memory and
+# ran out three times on 18 Sep. At 32k only ~1 sequence fits anyway.
+stage minicpm_think --model minicpm5-2b "${COMMON[@]}"               --chunk-size 1 \
       --out "$OUT/aime2025_minicpm5-2b.jsonl"        || exit 1
 
 echo "=== $(date '+%F %T') sweep complete"
