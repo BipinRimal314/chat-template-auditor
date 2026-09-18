@@ -155,10 +155,23 @@ long one 86.7. Since per-answer saving, each answer records its own time from
 start to finish. The two methods are not comparable, and neither is a clean
 cost per answer.
 
-**The sampler is not Qwen's recommended one for thinking-off mode.** The
-harness uses temperature 0.6 and top_p 0.95 for every model, with no top_k and
-no presence penalty. That is deliberate, for a fair comparison, but it is the
-likely reason for the looping and must be stated in any write-up.
+**The sampler is not the one Qwen recommends or evaluates with.** The harness
+uses temperature 0.6 and top_p 0.95 for every model, with no top_k and no
+presence penalty. Qwen's Qwen3.5-2B model card, read only on 18 September after
+the thinking-on stage started looping too, says:
+
+- The model "is more prone to entering thinking loops compared to other
+  Qwen3.5 models", and recommends streaming generation to detect and interrupt
+  them.
+- Qwen's own benchmarks used top_k 20 and a presence penalty of 1.5 in both
+  modes: temperature 0.6 and top_p 0.95 with thinking, temperature 0.7 and
+  top_p 0.8 without.
+
+The presence penalty in particular discourages repetition. Using one sampler
+for every model is a defensible choice for a fair comparison, but here it
+probably costs Qwen points. It must be stated in any write-up. *Lesson: read the
+model card's generation settings before the first run. It is item 7 of the
+checklist, and it would have predicted the looping.*
 
 ### Surviving interruptions
 
@@ -205,9 +218,14 @@ The Qwen3.5-2B thinking-off stage is not uniform. Any write-up should say:
   The first problems keep 4 attempts. The official score averages within each
   problem first, so every problem counts once.
 - **Loop stopping was added** at the same point. An answer is stopped once its
-  last 3,000 characters are one block repeated exactly. Continuing such a tail
-  only repeats it, so the extracted answer cannot change. It applies to the
-  other two stages from their start.
+  last 3,000 characters are one block repeated exactly. It applies to the other
+  two stages from their start. When the loop repeats a final answer, stopping
+  cannot change the grade. When it is a reasoning loop with no answer yet,
+  stopping assumes the model would not have broken out of it. That is likely
+  but was not verified before the change; the earlier notes and commit message
+  said it "cannot change" the answer, which is only true for the first kind.
+  Every stopped answer is marked `looped`, so they can be re-run without the
+  stop later to measure how often a loop would have recovered.
 - **The grader was fixed and the saved answers re-graded.** One answer changed
   from wrong to correct; four are flagged as unverifiable.
 - **Per-answer saving** changed what the saved speed figures mean, at 36

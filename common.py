@@ -55,8 +55,12 @@ def looping(text, window=3000, max_period=500):
     `max_period` characters repeated exactly, i.e. at least window/max_period = 6
     identical copies back to back. Deliberately strict: an answer that is merely
     long, or enumerating cases that differ, never matches, only exact repetition.
-    Continuing a periodic tail only adds more copies of what is already there,
-    so stopping it cannot change the answer that gets extracted.
+
+    When the loop repeats a final \\boxed{} answer, stopping cannot change what
+    gets extracted. When it is a reasoning loop with no answer yet, stopping
+    assumes the model would not have broken out; with sampling that is unlikely
+    but not impossible. Qwen's own Qwen3.5-2B card reports it is prone to
+    thinking loops and recommends detecting and interrupting them.
     """
     if len(text) < window:
         return False
