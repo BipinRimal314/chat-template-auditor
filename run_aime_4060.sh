@@ -46,20 +46,19 @@ watchdog & WD=$!
 trap 'kill $WD 2>/dev/null; [[ -f "$OUT/stage.pgid" ]] && kill -TERM -- "-$(cat "$OUT/stage.pgid")" 2>/dev/null' EXIT
 
 # vLLM refuses to start unless util x total is free. The desktop's share moves:
-# hyprlock alone holds ~170 MiB while the screen is locked. So pick the largest
-# setting that fits now, capped at 0.92. Below 0.90 a 32k MiniCPM5 or Qwen3.5
-# sequence no longer fits (measured: 0.88 fails for both), so wait instead.
+# hyprlock alone holds ~170 MiB while the screen is locked. Start from the
+# largest setting that looks free, capped at 0.92 and floored at 0.90. The
+# floor is not a promise: this probe runs in its own CUDA context, so it reads
+# ~0.25 GiB less free than vLLM will, and it must not be the one to decide.
+# vLLM's own refusal is the authority, handled in stage(). Below 0.90 a 32k
+# MiniCPM5 or Qwen3.5 sequence no longer fits (measured: 0.88 fails for both).
 gpu_mem() {
   local u
-  while :; do
-    u=$("$PY" -c 'import torch, math
+  u=$("$PY" -c 'import torch, math
 f, t = torch.cuda.mem_get_info()
 print(f"{min(0.92, math.floor((f - 96 * 2**20) / t * 100) / 100):.2f}")' 2>/dev/null)
-    if [[ -n "$u" ]] && awk "BEGIN{exit !($u >= 0.90)}"; then echo "$u"; return; fi
-    echo "$(date '+%F %T') waiting for GPU memory (would get ${u:-?}, need 0.90)" >&2
-    [[ -f "$OUT/STOP" ]] && return 1
-    sleep 60
-  done
+  if [[ -z "$u" ]] || awk "BEGIN{exit !($u < 0.90)}"; then u=0.90; fi
+  echo "$u"
 }
 
 stage() {  # name, then eval_aime.py args
@@ -83,9 +82,10 @@ stage() {  # name, then eval_aime.py args
     if grep -q 'less than desired GPU memory utilization' "$OUT/$name.log"; then
       gm=$(awk "BEGIN{printf \"%.2f\", $gm - 0.01}")
       if awk "BEGIN{exit !($gm < 0.90)}"; then
-        echo "$(date '+%F %T') not enough GPU memory even at 0.90; waiting"
+        echo "$(date '+%F %T') vLLM refused even 0.90; waiting for GPU memory"
         sleep 60
-        gm=$(gpu_mem) || return 1
+        [[ -f "$OUT/STOP" ]] && return 1
+        gm=$(gpu_mem)
       fi
       continue
     fi
