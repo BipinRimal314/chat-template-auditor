@@ -45,26 +45,22 @@ watchdog() {
 watchdog & WD=$!
 trap 'kill $WD 2>/dev/null; [[ -f "$OUT/stage.pgid" ]] && kill -TERM -- "-$(cat "$OUT/stage.pgid")" 2>/dev/null' EXIT
 
-# vLLM refuses to start unless util x total is free. The desktop's share moves:
-# hyprlock alone holds ~170 MiB while the screen is locked. Start from the
-# largest setting that looks free, capped at 0.92 and floored at 0.90. The
-# floor is not a promise: this probe runs in its own CUDA context, so it reads
-# ~0.25 GiB less free than vLLM will, and it must not be the one to decide.
-# vLLM's own refusal is the authority, handled in stage(). Below 0.90 a 32k
-# MiniCPM5 or Qwen3.5 sequence no longer fits (measured: 0.88 fails for both).
+# GPU memory share for vLLM. 0.90 is both the floor and, since 18 Sep, the
+# ceiling: below it a 32k MiniCPM5 or Qwen3.5 sequence no longer fits (0.88
+# fails for both), and above it there is no room for the desktop to grow. The
+# desktop takes ~400-600 MiB, and hyprlock adds 169 MiB when the screen locks.
+# A stage that started at 0.92 with the screen unlocked ran out of memory
+# mid-answer 80 s after the screen locked; MiniCPM5 had already run 36 minutes
+# at 0.90 while locked. vLLM's own startup refusal is still the authority and
+# is handled in stage(). Override with GPU_MEM=... if the desktop changes.
 gpu_mem() {
-  local u
-  u=$("$PY" -c 'import torch, math
-f, t = torch.cuda.mem_get_info()
-print(f"{min(0.92, math.floor((f - 96 * 2**20) / t * 100) / 100):.2f}")' 2>/dev/null)
-  if [[ -z "$u" ]] || awk "BEGIN{exit !($u < 0.90)}"; then u=0.90; fi
-  echo "$u"
+  echo "${GPU_MEM:-0.90}"
 }
 
 stage() {  # name, then eval_aime.py args
   local name=$1; shift
   if [[ -f "$OUT/STOP" ]]; then echo "skip $name: STOP present"; return 1; fi
-  local gm rc pid
+  local gm rc pid ooms=0
   gm=$(gpu_mem) || return 1
   while :; do
     echo "=== $(date '+%F %T') start $name gpu-mem=$gm"
@@ -87,6 +83,17 @@ stage() {  # name, then eval_aime.py args
         [[ -f "$OUT/STOP" ]] && return 1
         gm=$(gpu_mem)
       fi
+      continue
+    fi
+    # Out of memory mid-run: something else on the GPU grew after vLLM had
+    # reserved its share. Saved answers are safe, so wait and resume, but give
+    # up after 5 in a stage rather than loop forever on a real problem.
+    if grep -q 'CUDA out of memory' "$OUT/$name.log" && (( ++ooms <= 5 )); then
+      cp "$OUT/$name.log" "$OUT/$name.oom$ooms.log"
+      echo "$(date '+%F %T') $name ran out of GPU memory (${ooms}/5); resuming in 60s"
+      sleep 60
+      [[ -f "$OUT/STOP" ]] && return 1
+      gm=$(gpu_mem)
       continue
     fi
     # Anything else is a real failure. Stop rather than run later stages on a
