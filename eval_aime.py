@@ -30,7 +30,8 @@ def main():
     ap.add_argument("--no-thinking", action="store_true")
     ap.add_argument("--backend", default="auto", choices=["auto", "mlx", "vllm"])
     ap.add_argument("--chunk-size", type=int, default=None,
-                    help="prompts per batch; defaults to 1 on mlx, 24 on vllm")
+                    help="mlx: prompts per saved batch (default 1). vllm: most prompts "
+                         "in flight at once (default 24); each answer is saved as it finishes")
     ap.add_argument("--max-model-len", type=int, default=None)
     ap.add_argument("--gpu-mem", type=float, default=0.92)
     ap.add_argument("--eager", action="store_true",

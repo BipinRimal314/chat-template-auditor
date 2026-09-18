@@ -171,6 +171,48 @@ class VllmBackend:
                         "truncated": c.finish_reason == "length"})
         return res
 
+    def generate_stream(self, prompts, max_tokens, temp=0.6, top_p=0.95,
+                        seeds=None, window=None):
+        """Yield (index, record) for each prompt the moment it finishes.
+
+        At most `window` prompts are in the engine at once; as each finishes the
+        next is added, so one long answer never holds a finished batch hostage
+        and every answer can be saved before the next power cut.
+
+        `seconds` is wall time from submission to finish. With several prompts
+        in flight that overlaps other work, so it is latency, not a per-answer
+        cost; `gen_tps` is derived from it and means the same.
+        """
+        from vllm import SamplingParams
+        engine = self.llm.llm_engine
+        window = max(1, window or len(prompts))
+        pending = list(range(len(prompts)))
+        started = {}
+
+        def submit(i):
+            engine.add_request(str(i), prompts[i],
+                               SamplingParams(temperature=temp, top_p=top_p,
+                                              max_tokens=max_tokens,
+                                              seed=(seeds[i] if seeds else None)))
+            started[i] = time.time()
+
+        while pending and len(started) < window:
+            submit(pending.pop(0))
+        while engine.has_unfinished_requests():
+            for o in engine.step():
+                if not o.finished:
+                    continue
+                i = int(o.request_id)
+                c = o.outputs[0]
+                n = len(c.token_ids)
+                dt = time.time() - started.pop(i)
+                if pending:
+                    submit(pending.pop(0))
+                yield i, {"text": c.text, "gen_tokens": n,
+                          "seconds": round(dt, 2),
+                          "gen_tps": round(n / dt, 1) if dt else 0.0,
+                          "truncated": c.finish_reason == "length"}
+
 
 def get_backend(key, backend="auto", **kw):
     b = pick_backend(backend)

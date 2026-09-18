@@ -4,7 +4,7 @@ Work is dispatched in chunks rather than one prompt at a time so the vLLM backen
 can batch, while results are still flushed to disk after every chunk. That keeps
 a long run resumable: re-running skips whatever already landed in the JSONL.
 """
-import json, re
+import json, os, re
 from pathlib import Path
 
 from backends import get_backend, build_prompt, MODELS  # re-exported for scripts
@@ -64,6 +64,10 @@ def jsonl_append(path, recs):
     with open(path, "a") as f:
         for r in recs:
             f.write(json.dumps(r) + "\n")
+        # Force it to disk: after a power cut, unsynced appends came back as NUL
+        # bytes in gpu.log, and a lost record means a regenerated answer.
+        f.flush()
+        os.fsync(f.fileno())
 
 
 def jsonl_read(path):
@@ -87,9 +91,33 @@ def jsonl_read(path):
 def run_chunked(backend, items, out_path, chunk_size, max_tokens, temp, top_p,
                 make_record, label=""):
     """items: list of dicts each carrying at least `prompt` and `seed`.
-    make_record(item, generation) -> the dict written to the JSONL."""
+    make_record(item, generation) -> the dict written to the JSONL.
+
+    Backends that can stream (vLLM) save every answer the moment it finishes,
+    with at most `chunk_size` in flight, so a power cut costs only the answers
+    still generating. Others (MLX) run in chunks and save after each chunk.
+    """
     import time
-    total, done, t0 = len(items), 0, time.time()
+    total, done, ok, t0 = len(items), 0, 0, time.time()
+
+    def report(extra=""):
+        print(f"  [{label}] {done}/{total}  correct={ok}/{done}  {extra}"
+              f"elapsed={(time.time()-t0)/60:.1f}m", flush=True)
+
+    if hasattr(backend, "generate_stream"):
+        stream = backend.generate_stream([c["prompt"] for c in items], max_tokens,
+                                         temp=temp, top_p=top_p,
+                                         seeds=[c["seed"] for c in items],
+                                         window=chunk_size)
+        for i, g in stream:
+            rec = make_record(items[i], g)
+            jsonl_append(out_path, [rec])
+            done += 1
+            ok += bool(rec.get("correct"))
+            report(f"last={'ok' if rec.get('correct') else 'wrong'}"
+                   f"{' CUT' if rec.get('truncated') else ''} {g['gen_tokens']}tok  ")
+        return
+
     for i in range(0, total, chunk_size):
         chunk = items[i : i + chunk_size]
         gens = backend.generate([c["prompt"] for c in chunk], max_tokens,
@@ -98,6 +126,5 @@ def run_chunked(backend, items, out_path, chunk_size, max_tokens, temp, top_p,
         recs = [make_record(c, g) for c, g in zip(chunk, gens)]
         jsonl_append(out_path, recs)
         done += len(chunk)
-        ok = sum(1 for r in recs if r.get("correct"))
-        print(f"  [{label}] {done}/{total}  chunk_correct={ok}/{len(chunk)}  "
-              f"elapsed={(time.time()-t0)/60:.1f}m", flush=True)
+        ok += sum(1 for r in recs if r.get("correct"))
+        report()

@@ -10,7 +10,8 @@
 #
 # Settings forced by 8 GB (see backends.py): --eager, since CUDA graphs eat most
 # of the KV cache, and 32k generations fit about one MiniCPM5 and 1.5 Qwen3.5
-# sequences at a time. Chunks are small so a crash loses little work.
+# sequences at a time. --chunk-size is the most answers in flight; each answer
+# is saved the moment it finishes, so a power cut loses only unfinished ones.
 set -u
 cd "$(dirname "$0")"
 PY=.venv/bin/python
@@ -41,11 +42,29 @@ watchdog() {
 watchdog & WD=$!
 trap 'kill $WD 2>/dev/null; [[ -f "$OUT/stage.pgid" ]] && kill -TERM -- "-$(cat "$OUT/stage.pgid")" 2>/dev/null' EXIT
 
+# vLLM refuses to start unless util x total is free. The desktop's share moves:
+# hyprlock alone holds ~170 MiB while the screen is locked. So pick the largest
+# setting that fits now, capped at 0.92. Below 0.90 a 32k MiniCPM5 or Qwen3.5
+# sequence no longer fits (measured: 0.88 fails for both), so wait instead.
+gpu_mem() {
+  local u
+  while :; do
+    u=$("$PY" -c 'import torch, math
+f, t = torch.cuda.mem_get_info()
+print(f"{min(0.92, math.floor((f - 96 * 2**20) / t * 100) / 100):.2f}")' 2>/dev/null)
+    if [[ -n "$u" ]] && awk "BEGIN{exit !($u >= 0.90)}"; then echo "$u"; return; fi
+    echo "$(date '+%F %T') waiting for GPU memory (would get ${u:-?}, need 0.90)" >&2
+    [[ -f "$OUT/STOP" ]] && return 1
+    sleep 60
+  done
+}
+
 stage() {  # name, then eval_aime.py args
   local name=$1; shift
   if [[ -f "$OUT/STOP" ]]; then echo "skip $name: STOP present"; return 1; fi
-  echo "=== $(date '+%F %T') start $name"
-  setsid "$PY" eval_aime.py "$@" > "$OUT/$name.log" 2>&1 &
+  local gm; gm=$(gpu_mem) || return 1
+  echo "=== $(date '+%F %T') start $name gpu-mem=$gm"
+  setsid "$PY" eval_aime.py "$@" --gpu-mem "$gm" > "$OUT/$name.log" 2>&1 &
   local pid=$!
   echo "$pid" > "$OUT/stage.pgid"
   wait "$pid"; local rc=$?
@@ -55,7 +74,7 @@ stage() {  # name, then eval_aime.py args
   return 0
 }
 
-COMMON=(--year 2025 --n "$N" --backend vllm --eager --gpu-mem 0.92)
+COMMON=(--year 2025 --n "$N" --backend vllm --eager)
 
 # Ablation first, as in sweep.sh: it can falsify the hypothesis fastest.
 stage qwen_nothink  --model qwen3.5-2b  "${COMMON[@]}" --no-thinking --chunk-size 6 \
