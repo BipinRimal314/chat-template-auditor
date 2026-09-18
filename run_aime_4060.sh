@@ -16,7 +16,10 @@ set -u
 cd "$(dirname "$0")"
 PY=.venv/bin/python
 OUT=${OUT:-results/vllm-4060}
-N=${N:-4}
+# 2 attempts per problem, down from 4 on 18 Sep to halve the run. Problems
+# already done keep their 4; scoring averages within a problem first, so every
+# problem still counts once. 2 separates 30% from 80%, not close scores.
+N=${N:-2}
 HOT=${HOT:-85}          # degrees C; card self-throttles near 83
 mkdir -p "$OUT"
 rm -f "$OUT/STOP"
@@ -74,7 +77,11 @@ stage() {  # name, then eval_aime.py args
   return 0
 }
 
-COMMON=(--year 2025 --n "$N" --backend vllm --eager)
+# --stop-loops: abort an answer once its last 3,000 characters are one block
+# repeated exactly. Qwen3.5-2B with thinking off did this on over half its
+# answers, each running to the 32k cap for ~12 minutes; continuing a periodic
+# tail cannot change the extracted answer. Applied to every stage alike.
+COMMON=(--year 2025 --n "$N" --backend vllm --eager --stop-loops)
 
 # Ablation first, as in sweep.sh: it can falsify the hypothesis fastest.
 stage qwen_nothink  --model qwen3.5-2b  "${COMMON[@]}" --no-thinking --chunk-size 6 \

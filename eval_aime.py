@@ -28,6 +28,9 @@ def main():
     ap.add_argument("--top-p", type=float, default=0.95)
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--no-thinking", action="store_true")
+    ap.add_argument("--stop-loops", action="store_true",
+                    help="vllm only: abort an answer once its tail is exact "
+                         "repetition; the extracted answer cannot change")
     ap.add_argument("--backend", default="auto", choices=["auto", "mlx", "vllm"])
     ap.add_argument("--chunk-size", type=int, default=None,
                     help="mlx: prompts per saved batch (default 1). vllm: most prompts "
@@ -77,12 +80,13 @@ def main():
         pred = as_aime_int(extract_boxed(answer_part or g["text"]))
         return {"idx": item["idx"], "sample": item["sample"], "gold": item["gold"],
                 "pred": pred, "correct": pred is not None and pred == item["gold"],
-                "truncated": g["truncated"], "gen_tokens": g["gen_tokens"],
+                "truncated": g["truncated"], "looped": g.get("looped", False),
+                "gen_tokens": g["gen_tokens"],
                 "seconds": g["seconds"], "gen_tps": g["gen_tps"],
                 "tail": g["text"][-400:]}
 
     run_chunked(backend, items, out, chunk, a.max_tokens, a.temp, a.top_p,
-                record, label=f"aime{a.year}/{a.model}")
+                record, label=f"aime{a.year}/{a.model}", stop_loops=a.stop_loops)
     score(out)
 
 

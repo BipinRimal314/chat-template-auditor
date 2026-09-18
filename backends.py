@@ -172,47 +172,67 @@ class VllmBackend:
         return res
 
     def generate_stream(self, prompts, max_tokens, temp=0.6, top_p=0.95,
-                        seeds=None, window=None):
+                        seeds=None, window=None, stop_loops=False):
         """Yield (index, record) for each prompt the moment it finishes.
 
         At most `window` prompts are in the engine at once; as each finishes the
         next is added, so one long answer never holds a finished batch hostage
         and every answer can be saved before the next power cut.
 
+        With `stop_loops`, an answer whose tail has become exact repetition (see
+        common.looping) is aborted and returned with looped=True. Checked every
+        64 tokens. Without it, such answers run on to the token cap.
+
         `seconds` is wall time from submission to finish. With several prompts
         in flight that overlaps other work, so it is latency, not a per-answer
         cost; `gen_tps` is derived from it and means the same.
         """
         from vllm import SamplingParams
+        from vllm.sampling_params import RequestOutputKind
+        from common import looping
         engine = self.llm.llm_engine
         window = max(1, window or len(prompts))
         pending = list(range(len(prompts)))
-        started = {}
+        started, text, ntok, checked = {}, {}, {}, {}
 
         def submit(i):
             engine.add_request(str(i), prompts[i],
                                SamplingParams(temperature=temp, top_p=top_p,
                                               max_tokens=max_tokens,
-                                              seed=(seeds[i] if seeds else None)))
+                                              seed=(seeds[i] if seeds else None),
+                                              output_kind=RequestOutputKind.DELTA))
             started[i] = time.time()
+            text[i], ntok[i], checked[i] = [], 0, 0
+
+        def finish(i, reason, looped=False):
+            dt = time.time() - started.pop(i)
+            t, n = "".join(text.pop(i)), ntok.pop(i)
+            checked.pop(i)
+            if pending:
+                submit(pending.pop(0))
+            return i, {"text": t, "gen_tokens": n, "seconds": round(dt, 2),
+                       "gen_tps": round(n / dt, 1) if dt else 0.0,
+                       "truncated": reason == "length", "looped": looped}
 
         while pending and len(started) < window:
             submit(pending.pop(0))
         while engine.has_unfinished_requests():
             for o in engine.step():
-                if not o.finished:
-                    continue
                 i = int(o.request_id)
+                if i not in started:        # aborted earlier this step
+                    continue
                 c = o.outputs[0]
-                n = len(c.token_ids)
-                dt = time.time() - started.pop(i)
-                if pending:
-                    submit(pending.pop(0))
-                yield i, {"text": c.text, "gen_tokens": n,
-                          "seconds": round(dt, 2),
-                          "gen_tps": round(n / dt, 1) if dt else 0.0,
-                          "truncated": c.finish_reason == "length"}
-
+                text[i].append(c.text)
+                ntok[i] += len(c.token_ids)
+                if o.finished:
+                    yield finish(i, c.finish_reason)
+                elif stop_loops and ntok[i] - checked[i] >= 64:
+                    checked[i] = ntok[i]
+                    joined = "".join(text[i])
+                    text[i] = [joined]
+                    if looping(joined):
+                        engine.abort_request([str(i)])
+                        yield finish(i, "loop", looped=True)
 
 def get_backend(key, backend="auto", **kw):
     b = pick_backend(backend)

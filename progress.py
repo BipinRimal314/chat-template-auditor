@@ -12,7 +12,8 @@ from datetime import datetime
 from pathlib import Path
 
 OUT = Path(os.environ.get("OUT") or Path(__file__).parent / "results" / "vllm-4060")
-TOTAL = 120  # 30 problems x 4 attempts
+PROBLEMS = 30
+N = int(os.environ.get("N", 2))  # attempts per problem; must match run_aime_4060.sh
 CARD = {"qwen_nothink": 29.6, "qwen_think": 29.6, "minicpm_think": 86.5}
 STAGES = [
     ("qwen_nothink",  "Qwen3.5-2B, thinking off", "aime2025_qwen3.5-2b_nothink.jsonl"),
@@ -151,7 +152,7 @@ def main():
     times = stage_times()
     now = time.time()
     print(f"AIME 2025 sweep on RTX 4060   {datetime.now():%Y-%m-%d %H:%M:%S}\n")
-    head = f"{'stage':<26}{'done':>9}{'correct':>9}{'score':>8}{'card':>7}{'cut off':>9}{'avg tok':>9}{'elapsed':>9}{'eta':>9}"
+    head = f"{'stage':<26}{'done':>9}{'correct':>9}{'score':>8}{'card':>7}{'cut off':>9}{'looped':>8}{'avg tok':>9}{'elapsed':>9}{'eta':>9}"
     print(head)
     print("-" * len(head))
     for name, label, fname in STAGES:
@@ -159,6 +160,14 @@ def main():
         n = len(rows)
         ok = sum(r["correct"] for r in rows)
         cut = sum(r["truncated"] for r in rows)
+        loops = sum(r.get("looped", False) for r in rows)
+        # Problems done before the switch to N=2 kept 4 attempts; count what
+        # is actually planned, not 30 x N.
+        have = {}
+        for r in rows:
+            have.setdefault(r["idx"], set()).add(r["sample"])
+        TOTAL = n + sum(len(set(range(N)) - have.get(str(k), set()))
+                        for k in range(1, PROBLEMS + 1))
         tok = sum(r["gen_tokens"] for r in rows) / n if n else 0
         score = f"{100 * ok / n:.1f}" if n else "-"
         if name in times:
@@ -168,7 +177,7 @@ def main():
             el_s = hm(el)
         else:
             status, el_s, eta = "waiting", "-", "-"
-        print(f"{label:<26}{n:>5}/{TOTAL:<3}{ok:>9}{score:>8}{CARD[name]:>7}{cut:>9}{tok:>9.0f}{el_s:>9}{eta:>9}")
+        print(f"{label:<26}{n:>5}/{TOTAL:<3}{ok:>9}{score:>8}{CARD[name]:>7}{cut:>9}{loops:>8}{tok:>9.0f}{el_s:>9}{eta:>9}")
         if status == "running":
             f = in_flight(name)
             if f:
@@ -187,7 +196,8 @@ def main():
             print("WATCHDOG STOPPED THE RUN. Restart with the command in run_aime_4060.sh.")
     health(times, now)
     print("\nscore = % of finished attempts correct. Early scores are noisy and favour short answers.")
-    print("cut off = answers that hit the 32,768-token limit. Compare scores only if these stay low for both models.")
+    print("cut off = hit the 32,768-token limit. looped = stopped early for exact repetition.")
+    print("score counts every attempt equally; problems done before the switch to 2 attempts have 4.")
 
 
 if __name__ == "__main__":

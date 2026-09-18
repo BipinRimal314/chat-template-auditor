@@ -19,9 +19,19 @@ def strip_think(text):
 
 
 def extract_boxed(text):
-    """Last \\boxed{...} with brace matching, falling back to a trailing integer."""
-    idx = text.rfind("\\boxed")
-    if idx != -1:
+    """Last *complete* \\boxed{...} with brace matching, falling back to a
+    trailing integer.
+
+    An answer cut off at the token cap can end inside a box, e.g. a loop of
+    "\\boxed{16}" stopped at "\\boxed{1". Taking the last box regardless graded
+    that fragment as 1, so the unclosed tail is skipped and the last closed box
+    wins; the integer fallback also ignores the unclosed fragment.
+    """
+    end = len(text)
+    while True:
+        idx = text.rfind("\\boxed", 0, end)
+        if idx == -1:
+            break
         i = text.find("{", idx)
         if i != -1:
             depth, j = 0, i
@@ -33,8 +43,25 @@ def extract_boxed(text):
                     if depth == 0:
                         return text[i + 1 : j].strip()
                 j += 1
+        if end == len(text):
+            text = text[:idx]      # drop the unclosed fragment for the fallback
+        end = idx
     m = re.findall(r"(-?\d+)", text)
     return m[-1] if m else None
+
+
+def looping(text, window=3000, max_period=500):
+    """True when the last `window` characters are one block of at most
+    `max_period` characters repeated exactly, i.e. at least window/max_period = 6
+    identical copies back to back. Deliberately strict: an answer that is merely
+    long, or enumerating cases that differ, never matches, only exact repetition.
+    Continuing a periodic tail only adds more copies of what is already there,
+    so stopping it cannot change the answer that gets extracted.
+    """
+    if len(text) < window:
+        return False
+    tail = text[-window:]
+    return any(tail[:-p] == tail[p:] for p in range(1, max_period + 1))
 
 
 def as_aime_int(s):
@@ -89,7 +116,7 @@ def jsonl_read(path):
 
 
 def run_chunked(backend, items, out_path, chunk_size, max_tokens, temp, top_p,
-                make_record, label=""):
+                make_record, label="", stop_loops=False):
     """items: list of dicts each carrying at least `prompt` and `seed`.
     make_record(item, generation) -> the dict written to the JSONL.
 
@@ -108,14 +135,16 @@ def run_chunked(backend, items, out_path, chunk_size, max_tokens, temp, top_p,
         stream = backend.generate_stream([c["prompt"] for c in items], max_tokens,
                                          temp=temp, top_p=top_p,
                                          seeds=[c["seed"] for c in items],
-                                         window=chunk_size)
+                                         window=chunk_size,
+                                         stop_loops=stop_loops)
         for i, g in stream:
             rec = make_record(items[i], g)
             jsonl_append(out_path, [rec])
             done += 1
             ok += bool(rec.get("correct"))
             report(f"last={'ok' if rec.get('correct') else 'wrong'}"
-                   f"{' CUT' if rec.get('truncated') else ''} {g['gen_tokens']}tok  ")
+                   f"{' CUT' if rec.get('truncated') else ''}"
+                   f"{' LOOP' if rec.get('looped') else ''} {g['gen_tokens']}tok  ")
         return
 
     for i in range(0, total, chunk_size):
