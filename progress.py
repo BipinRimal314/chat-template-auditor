@@ -110,6 +110,11 @@ def alive(pid):
         return False
 
 
+def runner_alive():
+    r = subprocess.run(["pgrep", "-f", "^bash ./run_aime_4060.sh"], capture_output=True)
+    return r.returncode == 0
+
+
 def health(times, now):
     """Working, stuck, or stopped, from signals that do not depend on a result
     being saved. A batch of 32k-token answers can go most of an hour without
@@ -137,6 +142,13 @@ def health(times, now):
         verdict = "FINISHED. Every stage completed."
     elif (OUT / "STOP").exists():
         verdict = "STOPPED by the heat watchdog. Let the card cool, then restart."
+    elif not proc_ok and runner_alive():
+        last = (OUT / "sweep.log").read_text().strip().splitlines()[-1:] or [""]
+        if "waiting" in last[0] or "refused" in last[0]:
+            verdict = ("WAITING. The runner is alive and waiting for GPU memory to free up, "
+                       "usually because the screen is locked. It retries every minute.")
+        else:
+            verdict = "STARTING. The runner is alive and between stages or loading a model."
     elif not proc_ok:
         verdict = ("STOPPED. No eval process is running but the sweep did not finish. "
                    "Check the stage log for an error, then restart; finished work is kept.")
