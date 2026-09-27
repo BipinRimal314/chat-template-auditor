@@ -120,7 +120,8 @@ def jsonl_read(path):
 
 
 def run_chunked(backend, items, out_path, chunk_size, max_tokens, temp, top_p,
-                make_record, label="", stop_loops=False):
+                make_record, label="", stop_loops=False,
+                top_k=0, presence_penalty=0.0):
     """items: list of dicts each carrying at least `prompt` and `seed`.
     make_record(item, generation) -> the dict written to the JSONL.
 
@@ -140,7 +141,9 @@ def run_chunked(backend, items, out_path, chunk_size, max_tokens, temp, top_p,
                                          temp=temp, top_p=top_p,
                                          seeds=[c["seed"] for c in items],
                                          window=chunk_size,
-                                         stop_loops=stop_loops)
+                                         stop_loops=stop_loops,
+                                         top_k=top_k,
+                                         presence_penalty=presence_penalty)
         for i, g in stream:
             rec = make_record(items[i], g)
             jsonl_append(out_path, [rec])

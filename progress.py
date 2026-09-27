@@ -14,11 +14,14 @@ from pathlib import Path
 OUT = Path(os.environ.get("OUT") or Path(__file__).parent / "results" / "vllm-4060")
 PROBLEMS = 30
 N = int(os.environ.get("N", 2))  # attempts per problem; must match run_aime_4060.sh
-CARD = {"qwen_nothink": 29.6, "qwen_think": 29.6, "minicpm_think": 86.5}
+CARD = {"qwen_nothink": 29.6, "qwen_think": 29.6, "minicpm_think": 86.5,
+        "qwen_think_qwensampler": 29.6}
 STAGES = [
     ("qwen_nothink",  "Qwen3.5-2B, thinking off", "aime2025_qwen3.5-2b_nothink.jsonl"),
     ("qwen_think",    "Qwen3.5-2B, thinking on",  "aime2025_qwen3.5-2b.jsonl"),
     ("minicpm_think", "MiniCPM5-2B, thinking on", "aime2025_minicpm5-2b.jsonl"),
+    ("qwen_think_qwensampler", "Qwen3.5-2B, Qwen sampler",
+     "aime2025_qwen3.5-2b_qwensampler.jsonl"),
 ]
 
 

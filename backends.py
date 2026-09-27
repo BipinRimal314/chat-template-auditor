@@ -151,10 +151,24 @@ class VllmBackend:
         self.tokenizer = load_tokenizer(key, "vllm")
         print(f"[vllm] loaded {self.path} in {time.time()-t:.1f}s", flush=True)
 
-    def generate(self, prompts, max_tokens, temp=0.6, top_p=0.95, seeds=None):
+    @staticmethod
+    def _sampling(temp, top_p, top_k, presence_penalty):
+        """Only non-default knobs are passed on, so a run that does not ask for
+        top_k or a presence penalty builds exactly the SamplingParams it always
+        did. top_k <= 0 means disabled, as in vLLM itself."""
+        kw = {"temperature": temp, "top_p": top_p}
+        if top_k and top_k > 0:
+            kw["top_k"] = top_k
+        if presence_penalty:
+            kw["presence_penalty"] = presence_penalty
+        return kw
+
+    def generate(self, prompts, max_tokens, temp=0.6, top_p=0.95, seeds=None,
+                 top_k=0, presence_penalty=0.0):
         from vllm import SamplingParams
-        params = [SamplingParams(temperature=temp, top_p=top_p, max_tokens=max_tokens,
-                                 seed=(seeds[i] if seeds else None))
+        kw = self._sampling(temp, top_p, top_k, presence_penalty)
+        params = [SamplingParams(max_tokens=max_tokens,
+                                 seed=(seeds[i] if seeds else None), **kw)
                   for i in range(len(prompts))]
         t0 = time.time()
         outs = self.llm.generate(prompts, params)
@@ -172,7 +186,8 @@ class VllmBackend:
         return res
 
     def generate_stream(self, prompts, max_tokens, temp=0.6, top_p=0.95,
-                        seeds=None, window=None, stop_loops=False):
+                        seeds=None, window=None, stop_loops=False,
+                        top_k=0, presence_penalty=0.0):
         """Yield (index, record) for each prompt the moment it finishes.
 
         At most `window` prompts are in the engine at once; as each finishes the
@@ -195,12 +210,14 @@ class VllmBackend:
         pending = list(range(len(prompts)))
         started, text, ntok, checked = {}, {}, {}, {}
 
+        kw = self._sampling(temp, top_p, top_k, presence_penalty)
+
         def submit(i):
             engine.add_request(str(i), prompts[i],
-                               SamplingParams(temperature=temp, top_p=top_p,
-                                              max_tokens=max_tokens,
+                               SamplingParams(max_tokens=max_tokens,
                                               seed=(seeds[i] if seeds else None),
-                                              output_kind=RequestOutputKind.DELTA))
+                                              output_kind=RequestOutputKind.DELTA,
+                                              **kw))
             started[i] = time.time()
             text[i], ntok[i], checked[i] = [], 0, 0
 

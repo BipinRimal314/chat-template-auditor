@@ -121,5 +121,18 @@ stage qwen_think    --model qwen3.5-2b  "${COMMON[@]}"               --chunk-siz
 stage minicpm_think --model minicpm5-2b "${COMMON[@]}"               --chunk-size 1 \
       --out "$OUT/aime2025_minicpm5-2b.jsonl"        || exit 1
 
+# Sampler control, added 27 Sep. Stages 1-3 gave every model one sampler
+# (temp 0.6, top_p 0.95, nothing else), which is not the one Qwen's own card
+# evaluates the 2B with: it specifies top_k 20 and presence_penalty 1.5
+# precisely because the 2B loops. Thinking-on looped on 45 of 60 attempts under
+# the shared sampler, so the shared-sampler score may be measuring the sampler
+# rather than the model. This stage changes ONLY the sampler: same model, same
+# prompt, same thinking flag, same seeds, same cap, same loop detector as
+# qwen_think. Its own output file, because a suite must not straddle samplers
+# any more than it may straddle backends.
+stage qwen_think_qwensampler --model qwen3.5-2b "${COMMON[@]}" --chunk-size 6 \
+      --top-k 20 --presence-penalty 1.5 \
+      --out "$OUT/aime2025_qwen3.5-2b_qwensampler.jsonl" || exit 1
+
 echo "=== $(date '+%F %T') sweep complete"
 "$PY" eval_aime.py score "$OUT"/aime2025_*.jsonl

@@ -26,6 +26,11 @@ def main():
     ap.add_argument("--max-tokens", type=int, default=32768)
     ap.add_argument("--temp", type=float, default=0.6)
     ap.add_argument("--top-p", type=float, default=0.95)
+    ap.add_argument("--top-k", type=int, default=0,
+                    help="vllm only: 0 disables. Qwen's card evaluates the 2B "
+                         "with 20; the sweep's other stages use none")
+    ap.add_argument("--presence-penalty", type=float, default=0.0,
+                    help="vllm only: Qwen's card uses 1.5 to suppress loops")
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--no-thinking", action="store_true")
     ap.add_argument("--stop-loops", action="store_true",
@@ -86,7 +91,8 @@ def main():
                 "tail": g["text"][-400:]}
 
     run_chunked(backend, items, out, chunk, a.max_tokens, a.temp, a.top_p,
-                record, label=f"aime{a.year}/{a.model}", stop_loops=a.stop_loops)
+                record, label=f"aime{a.year}/{a.model}", stop_loops=a.stop_loops,
+                top_k=a.top_k, presence_penalty=a.presence_penalty)
     score(out)
 
 
