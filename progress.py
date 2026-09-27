@@ -118,6 +118,22 @@ def runner_alive():
     return r.returncode == 0
 
 
+def sweep_finished():
+    """True only if the sweep completed *after* the last stage was started.
+
+    "sweep complete" stays in the log forever, so testing for it anywhere in
+    the file reports a finished sweep the moment a re-run starts -- including
+    a re-run that adds a new stage to an already-complete sweep. Only the last
+    "===" event decides, since the log is append-only.
+    """
+    log = OUT / "sweep.log"
+    if not log.exists():
+        return False
+    events = [l for l in log.read_text().splitlines()
+              if re.match(r"=== \S+ \S+ (start|end|sweep complete)", l)]
+    return bool(events) and events[-1].endswith("sweep complete")
+
+
 def health(times, now):
     """Working, stuck, or stopped, from signals that do not depend on a result
     being saved. A batch of 32k-token answers can go most of an hour without
@@ -140,7 +156,7 @@ def health(times, now):
     print(f"  last result    {since_save}")
     print(f"  last log line  {since_log} ago")
 
-    done = "sweep complete" in (OUT / "sweep.log").read_text() if (OUT / "sweep.log").exists() else False
+    done = sweep_finished()
     if done:
         verdict = "FINISHED. Every stage completed."
     elif (OUT / "STOP").exists():
