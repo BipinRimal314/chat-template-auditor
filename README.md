@@ -31,11 +31,24 @@ anything about intent.
 
 ### What this does not establish
 
-An early ablation run trended *above* the card's reported 29.6, and the model
-still emits ~8k tokens of visible step-by-step work when the `<think>` slot is
-closed. Suppression blocks the reasoning channel, not the reasoning. The
-template inversion is a real packaging defect; whether it explains the card's
-baseline column is still open, and the AIME sweep is the test.
+Suppression blocks the reasoning channel, not the reasoning: the model still
+emits ~8k tokens of visible step-by-step work when the `<think>` slot is closed.
+The template inversion is a real packaging defect, but it does **not** explain
+the card's baseline column.
+
+The AIME sweep settled that — see **[FINDINGS.md](FINDINGS.md)**. Running both
+models through one harness with the reasoning flag set explicitly, MiniCPM5-2B
+beats Qwen3.5-2B by **54.2 points, 95% CI [36.7, 70.0]**, against the card's
+claimed 57. Turning Qwen's thinking *on* made it score lower, not higher, and
+re-running it with Qwen's own recommended anti-loop sampler recovered only
++3.3 points [+0.0, +8.3]. **The card's comparison is substantively fair.**
+
+What the sweep did turn up is worth more than the verdict: Qwen3.5-2B's score
+is essentially its *termination rate*. Of 120 thinking-on attempts across two
+samplers, 104 looped or hit the token cap and produced zero correct answers,
+while all 16 that stopped on their own were correct. Any accuracy column that
+does not report truncation and looping alongside it will read a formatting
+failure as a capability gap.
 
 ## auditor/ - chat-template auditor
 

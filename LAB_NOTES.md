@@ -59,6 +59,16 @@ this order before starting anything that runs for hours.
 | 18 Sep 14:55 | Switched to saving each answer as it finishes, at 36/120. |
 | 18 Sep 15:22 | Switched to 2 attempts per problem, loop stopping and a fixed grader, at 39 answers. First restart crashed on memory and the runner advanced to the next stage. Stopped it, fixed the runner. |
 | 18 Sep 15:24 | Resumed with all changes. |
+| 18 Sep 16:13 | Stage 1 finished, 79 attempts, avg@n 17.5. |
+| 18 Sep 18:03 | Stage 2 finished, avg@n 11.7. 45 of 60 attempts stopped as loops; the 7 that terminated were all correct. |
+| 18 Sep 18:04 | Stage 3 (MiniCPM5) started. Third power cut at ~18:40; per-answer saving held, 12 answers kept. |
+| 18 Sep 18:59 | Out of memory mid-run: started at 0.92 unlocked, hyprlock took 169 MiB when the screen locked. Runner fixed at 0.90 with auto-resume, up to 5 OOMs per stage. |
+| 18 Sep 20:54 | **Fourth power cut**, 7 answers into the stage. Machine stayed off for a week. |
+| 25 Sep 16:42 | Resumed. 24 answers had survived; only the one in flight was lost. Both Qwen stages replayed in ~1 min each and exited 0 with saved work skipped, confirming them complete. |
+| 25 Sep 21:16 | Stage 3 finished, 60 attempts, avg@n 71.7. Sweep complete as originally designed. |
+| 27 Sep 17:07 | Stage 4 added: Qwen thinking on with Qwen's own sampler (`top_k 20`, `presence_penalty 1.5`), to test whether the shared sampler was responsible for the loops. |
+| 27 Sep 20:48 | Stage 4 finished, avg@n 15.0. Paired gain over the shared sampler +3.3 points, CI touching zero. |
+| 28 Sep | Written up in `FINDINGS.md`. Branch pushed. |
 
 ## Problems found
 
@@ -231,24 +241,72 @@ The Qwen3.5-2B thinking-off stage is not uniform. Any write-up should say:
 - **Per-answer saving** changed what the saved speed figures mean, at 36
   answers. Scores are unaffected.
 
-## State when these notes were written
+## Final state
 
-18 September, 15:31. Branch `rtx4060-aime-sweep`, not pushed.
+28 September 2026. Sweep complete, four stages, 259 attempts, 17 hours of
+wall-clock generation. Results and conclusions are in
+[`FINDINGS.md`](FINDINGS.md); this file is the record of how the run went.
 
-| Stage | Done | Correct | Scorecard claims |
+| Stage | Attempts | avg@n | Card |
 |---|---|---|---|
-| Qwen3.5-2B, thinking off | 43 of 79 | 9, 20.9% | 29.6% |
-| Qwen3.5-2B, thinking on | 0 of 60 | - | 29.6% |
-| MiniCPM5-2B, thinking on | 0 of 60 | - | 86.5% |
+| Qwen3.5-2B, thinking off | 79 | 17.5% | 29.6 |
+| Qwen3.5-2B, thinking on | 60 | 11.7% | 29.6 |
+| MiniCPM5-2B, thinking on | 60 | 71.7% | 86.5 |
+| Qwen3.5-2B, Qwen's own sampler | 60 | 15.0% | 29.6 |
 
-The early Qwen score is below the scorecard's number, which fits the idea that
-the scorecard ran Qwen with thinking off. The harder problems come later, so it
-can still move. Remaining time is roughly 10 hours.
+Both hypotheses were refuted: the chat template does not explain the card's
+Qwen baseline, and neither does the sampler. The card's comparison holds.
 
-Resume after any interruption with:
+The prediction in the 18 September version of this section — that the early
+Qwen score being below the card's "fits the idea that the scorecard ran Qwen
+with thinking off" — was wrong. Thinking on scored *lower*, not higher. It is
+left here rather than edited out, because reading a partial result as support
+for the hypothesis that motivated the run is the mistake this file exists to
+record.
+
+## Lessons added after 18 September
+
+**A power cut you have already survived is not a power cut you have solved.**
+Four cuts in this run. Per-answer fsync, added after the second, meant the
+fourth cost one answer instead of a batch — and the week the machine then spent
+off cost nothing at all. The fix was cheap and should have been there from the
+first hour.
+
+**Wait on a condition only the new run can produce.** Stale-log checks gave a
+false reading twice during the run, and then a third time in a different form:
+`progress.py` decided the sweep was finished by searching the whole of
+`sweep.log` for `sweep complete`, a string that never goes away. Adding stage 4
+to an already-complete sweep made it print `FINISHED` next to its own
+`eval process running` and `GPU busy 100%` lines. Fixed to read only the last
+event. The reason this stayed cosmetic rather than costing a run is that the
+health block reports process, GPU and log age independently, so the wrong line
+was contradicted by the three directly above it.
+
+**Interim scores from a partial stage are biased, not just noisy.** Short
+answers finish first. Stage 4 read 22.5% at 40 of 60 attempts and finished at
+15.0%: the last 20 attempts produced no correct answers. A number quoted from a
+running stage should carry the direction of its bias, not only a caution.
+
+**Do not sum a per-answer timing field across a batched stage.** `seconds` is
+measured from submission to finish, so with 6 answers in flight it is latency,
+not exclusive GPU time. Summing it reported 46 hours of GPU time against 17
+hours of actual wall clock, and made Qwen's cost per correct answer look 5x
+worse than it was. Stage cost now comes from `sweep.log` wall clock.
+
+**A decision made to save time still has to be tested.** Using one sampler for
+every model was the right call for comparability, but it put Qwen in the
+configuration its own card warns against. That was noticed from the results
+rather than from the vendor documentation, and it took a fourth stage to find
+out what it cost. Point 7 at the top of this file was written before that
+stage existed; the stage is what turned it from a caveat into a measurement.
+
+## Resuming
 
 ```bash
 cd ~/Downloads/claude/chat-template-auditor
 setsid nohup ./run_aime_4060.sh >> results/vllm-4060/sweep.log 2>&1 &
 watch -n 30 .venv/bin/python progress.py
 ```
+
+Re-running skips every answer already on disk. `progress.py` reads only saved
+files and never touches the GPU, so it is safe to run at any time.
