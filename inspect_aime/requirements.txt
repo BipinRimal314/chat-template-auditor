@@ -1,0 +1,3 @@
+inspect-ai==0.3.271
+inspect_evals @ git+https://github.com/UKGovernmentBEIS/inspect_evals@07fa51872e7c688e34c412eb4546e217571b4db9
+vllm>=0.8
